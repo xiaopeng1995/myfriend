@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/myfriend.iml" filepath="$PROJECT_DIR$/.idea/modules/myfriend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/myfriend-api/myfriend-api.iml" filepath="$PROJECT_DIR$/.idea/modules/myfriend-api/myfriend-api.iml" group="myfriend-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/myfriend-api/myfriend-api_main.iml" filepath="$PROJECT_DIR$/.idea/modules/myfriend-api/myfriend-api_main.iml" group="myfriend-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/myfriend-api/myfriend-api_test.iml" filepath="$PROJECT_DIR$/.idea/modules/myfriend-api/myfriend-api_test.iml" group="myfriend-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/myfriend-http/myfriend-http.iml" filepath="$PROJECT_DIR$/.idea/modules/myfriend-http/myfriend-http.iml" group="myfriend-http" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/myfriend-http/myfriend-http_main.iml" filepath="$PROJECT_DIR$/.idea/modules/myfriend-http/myfriend-http_main.iml" group="myfriend-http" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/myfriend-http/myfriend-http_test.iml" filepath="$PROJECT_DIR$/.idea/modules/myfriend-http/myfriend-http_test.iml" group="myfriend-http" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/myfriend-websocket/myfriend-websocket.iml" filepath="$PROJECT_DIR$/.idea/modules/myfriend-websocket/myfriend-websocket.iml" group="myfriend-websocket" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/myfriend-websocket/myfriend-websocket_main.iml" filepath="$PROJECT_DIR$/.idea/modules/myfriend-websocket/myfriend-websocket_main.iml" group="myfriend-websocket" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/myfriend-websocket/myfriend-websocket_test.iml" filepath="$PROJECT_DIR$/.idea/modules/myfriend-websocket/myfriend-websocket_test.iml" group="myfriend-websocket" />
+    </modules>
+  </component>
+</project>

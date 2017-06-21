@@ -1,0 +1,5 @@
+rootProject.name = 'myfriend'
+include 'myfriend-api'
+include 'myfriend-http'
+include 'myfriend-websocket'
+
