@@ -15,8 +15,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import xiaopeng666.top.config.ConfigProperties;
+import xiaopeng666.top.entity.MsgInfo;
+import xiaopeng666.top.entity.MsgType;
 import xiaopeng666.top.entity.Registry;
 
+import xiaopeng666.top.utils.JsonUtils;
 import xiaopeng666.top.websockte.MyWebSocket;
 
 import java.text.SimpleDateFormat;
@@ -95,7 +98,12 @@ public class ApplicationStartup {
                     // MsgInfo msgInfo = JsonUtils.Mapper.reader(new String(body), MsgInfo.class);
                     if (a.size() > 0) {
                         for (MyWebSocket item : a) {
-                            item.sendMessage(ddf.format(new Date()) + "</br>" + new String(body));
+                            MsgInfo msgInfo = new MsgInfo();
+                            msgInfo.setInfo(new String(body));
+                            msgInfo.setType(MsgType.MSMINFO.value());
+                            msgInfo.setTime(new Date());
+                            String jsonm = JsonUtils.Mapper.writeValueAsString(msgInfo);
+                            item.sendMessage(jsonm);
                         }
                     }
                 } catch (Exception e) {

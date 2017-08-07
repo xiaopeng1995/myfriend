@@ -11,6 +11,9 @@ buildscript {
 }
 
 dependencies {
+    // project
+    compile project(':myfriend-api')
+
     //websocket
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '1.4.2.RELEASE'
 
@@ -21,7 +24,6 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-amqp'
     // mongodb
    // compile 'org.springframework.boot:spring-boot-starter-data-mongodb'
-
     // redis
     compile 'org.springframework.boot:spring-boot-starter-data-redis'
 }

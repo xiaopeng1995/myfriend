@@ -142,4 +142,22 @@ public class RedisUtil {
         }
         return result;
     }
+
+    /**
+     * 给key设置过期时间
+     *
+     * @param key
+     * @return
+     */
+    public boolean setString(final String key, int expireTime) {
+        logger.debug("Redis写入:" + key + "有效期:" + expireTime );
+        boolean result = false;
+        try {
+            redisTemplate.expire(key, expireTime, TimeUnit.SECONDS);
+            result = true;
+        } catch (Exception e) {
+            logger.error("Redis写入异常:", e);
+        }
+        return result;
+    }
 }
