@@ -2,13 +2,10 @@ package xiaopeng666.top.websockte;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RestController;
 import xiaopeng666.top.entity.MsgInfo;
 import xiaopeng666.top.entity.MsgType;
 import xiaopeng666.top.entity.Registry;
-import xiaopeng666.top.redis.RedisUtil;
 import xiaopeng666.top.utils.JsonUtils;
 
 import javax.websocket.OnClose;
@@ -28,6 +25,7 @@ import java.util.List;
 @ServerEndpoint("/websocket")
 @Component
 public class MyWebSocket {
+
 
     // logger
     private static final Logger logger = LoggerFactory.getLogger(MyWebSocket.class);
