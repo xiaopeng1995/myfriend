@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xiaopeng666.top.entity.ResponseMessage;
 import xiaopeng666.top.redis.RedisUtil;
+import xiaopeng666.top.redis.RedisUtilsBean;
+import xiaopeng666.top.utils.redis.RedisUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,8 +21,8 @@ import java.util.UUID;
 public class UserController extends BasicController {
     // logger
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-    @Autowired
-    RedisUtil redisUtil;
+    // redis
+    private RedisUtils RedisUtils = new RedisUtilsBean().setInit();
 
     /**
      * 发验证
@@ -29,15 +31,16 @@ public class UserController extends BasicController {
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ResponseMessage sendMsg(@RequestParam String id) {
+    public ResponseMessage login(@RequestParam String id) {
         logger.debug("/login : id=" + id);
         try {
             String token = UUID.randomUUID().toString().replace("-", "");
-            redisUtil.setString(id, 7200, token);
             Map<String, String> data = new HashMap<>();
             data.put("token", token);
+            RedisUtils.setex(token,id,7200);
             return successMessage(data);
         } catch (Exception e) {
+
             return failMessage(1001, "rabbitMQ通讯异常");
         }
     }

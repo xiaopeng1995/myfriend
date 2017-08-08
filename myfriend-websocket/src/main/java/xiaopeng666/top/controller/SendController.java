@@ -19,8 +19,6 @@ public class SendController extends BasicController {
     private static final Logger logger = LoggerFactory.getLogger(SendController.class);
     @Autowired
     Sender sender;
-    @Autowired
-    RedisUtil redisUtil;
 
     /**
      * 发验证
@@ -29,15 +27,22 @@ public class SendController extends BasicController {
      * @return
      */
     @RequestMapping(value = "/send/msg", method = RequestMethod.GET)
-    public ResponseMessage sendMsg(@RequestParam String msg , String id) {
+    public ResponseMessage sendMsg(@RequestParam String msg ,@RequestParam String token, @RequestParam String sendType) {
         logger.debug("/sendMsg : msg="+msg);
+        if(token==null||token.length()<20)
+        {
+            return failMessage(1002,"用户验证失败请重新登录！");
+        }
         try {
-            sender.send(msg);
-            if(id.equals("tuling"))
+
+            if(sendType.equals("tuling"))
             {
+                sender.send(msg);
                 sender.send("机器人回复："+TulingApiProcess.getTulingResult(msg));
+            }else if(sendType.equals("open")) {
+                sender.send(msg);
             }else {
-                redisUtil.setString("name",10,"xiaopeng");
+                return failMessage(1003,"参数类型错误");
             }
             return successMessage(true);
         }catch (Exception e)

@@ -2,11 +2,17 @@ package xiaopeng666.top.websockte;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
+import xiaopeng666.top.controller.UserController;
 import xiaopeng666.top.entity.MsgInfo;
 import xiaopeng666.top.entity.MsgType;
 import xiaopeng666.top.entity.Registry;
+import xiaopeng666.top.redis.RedisUtilsBean;
 import xiaopeng666.top.utils.JsonUtils;
+import xiaopeng666.top.utils.redis.RedisUtils;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -26,7 +32,6 @@ import java.util.List;
 @Component
 public class MyWebSocket {
 
-
     // logger
     private static final Logger logger = LoggerFactory.getLogger(MyWebSocket.class);
     private static int onlineCount = 0;
@@ -35,6 +40,7 @@ public class MyWebSocket {
     private static final SimpleDateFormat ddf = new SimpleDateFormat("yyyy年MM月dd日,HH时mm分ss秒");
     private Session session;
     private String token;
+    private RedisUtils RedisUtils = new RedisUtilsBean().setInit();
 
     @OnOpen
     public void onOpen(Session session) {
@@ -44,8 +50,6 @@ public class MyWebSocket {
         Registry.INSTANCE.saveKey("webSocketSet", webSocketSet);
         addOnlineCount();
         logger.info("有新链接加入!当前在线人数为" + getOnlineCount());
-
-
         sendCount(getOnlineCount());
     }
 
@@ -79,6 +83,7 @@ public class MyWebSocket {
     public void onMessage(String message, Session session) throws IOException {
         logger.debug("来自的客户端的消息:" + message);
         token = message;
+        RedisUtils.setex(token ,session.getId(),7200);
         // 群发消息
 //        for ( MyWebSocket item : webSocketSet ){
 //            item.sendMessage(ddf.format(new Date())+"</br>"+message);
