@@ -2,10 +2,8 @@ package xiaopeng666.top.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xiaopeng666.top.entity.ResponseMessage;
-import xiaopeng666.top.redis.RedisUtil;
 import xiaopeng666.top.redis.RedisUtilsBean;
 import xiaopeng666.top.utils.redis.RedisUtils;
 
@@ -27,17 +25,17 @@ public class UserController extends BasicController {
     /**
      * 发验证
      *
-     * @param id
+     * @param name
      * @return
      */
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ResponseMessage login(@RequestParam String id) {
-        logger.debug("/login : id=" + id);
+    @RequestMapping(value = "/login/visitor", method = RequestMethod.GET)
+    public ResponseMessage login(@RequestParam String name) {
+        logger.debug("/login : id=" + name);
         try {
             String token = UUID.randomUUID().toString().replace("-", "");
             Map<String, String> data = new HashMap<>();
             data.put("token", token);
-            RedisUtils.setex(token,id,7200);
+            RedisUtils.setex(token,name,7200);
             return successMessage(data);
         } catch (Exception e) {
 

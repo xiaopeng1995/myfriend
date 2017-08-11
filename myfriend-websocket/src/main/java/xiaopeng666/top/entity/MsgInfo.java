@@ -9,7 +9,8 @@ public class MsgInfo {
     private String id;
     private String name;
     private String info;
-    private Date time;
+    private String rinfo;
+    private long time;
     private int type;
 
     public String getId() {
@@ -28,11 +29,11 @@ public class MsgInfo {
         this.name = name;
     }
 
-    public Date getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(long time) {
         this.time = time;
     }
 
@@ -50,5 +51,13 @@ public class MsgInfo {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public String getRinfo() {
+        return rinfo;
+    }
+
+    public void setRinfo(String rinfo) {
+        this.rinfo = rinfo;
     }
 }

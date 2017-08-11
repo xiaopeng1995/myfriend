@@ -22,8 +22,4 @@ dependencies {
 
     //rabbitmq
     compile 'org.springframework.boot:spring-boot-starter-amqp'
-    // mongodb
-   // compile 'org.springframework.boot:spring-boot-starter-data-mongodb'
-//    // redis
-//    compile 'org.springframework.boot:spring-boot-starter-data-redis'
 }

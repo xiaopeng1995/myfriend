@@ -98,12 +98,7 @@ public class ApplicationStartup {
                     // MsgInfo msgInfo = JsonUtils.Mapper.reader(new String(body), MsgInfo.class);
                     if (a.size() > 0) {
                         for (MyWebSocket item : a) {
-                            MsgInfo msgInfo = new MsgInfo();
-                            msgInfo.setInfo(new String(body));
-                            msgInfo.setType(MsgType.MSMINFO.value());
-                            msgInfo.setTime(new Date());
-                            String jsonm = JsonUtils.Mapper.writeValueAsString(msgInfo);
-                            item.sendMessage(jsonm);
+                            item.sendMessage(new String(body));
                         }
                     }
                 } catch (Exception e) {

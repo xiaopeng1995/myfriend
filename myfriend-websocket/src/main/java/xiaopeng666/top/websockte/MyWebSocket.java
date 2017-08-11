@@ -68,7 +68,7 @@ public class MyWebSocket {
         MsgInfo msgInfo = new MsgInfo();
         msgInfo.setInfo(count + "");
         msgInfo.setType(MsgType.MSMCOUNT.value());
-        msgInfo.setTime(new Date());
+        msgInfo.setTime(new Date().getTime());
         try {
             String jsonm = JsonUtils.Mapper.writeValueAsString(msgInfo);
             for (MyWebSocket item : webSocketSet) {
@@ -83,7 +83,7 @@ public class MyWebSocket {
     public void onMessage(String message, Session session) throws IOException {
         logger.debug("来自的客户端的消息:" + message);
         token = message;
-        RedisUtils.setex(token ,session.getId(),7200);
+        RedisUtils.setex(token + "sid", session.getId(), 7200);
         // 群发消息
 //        for ( MyWebSocket item : webSocketSet ){
 //            item.sendMessage(ddf.format(new Date())+"</br>"+message);
