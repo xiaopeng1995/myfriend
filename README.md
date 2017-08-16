@@ -1,23 +1,23 @@
 项目名称：myfriend
 
-此项目适合java新手，所有使用到的工具均为基础功能，前后分离项目。大神请提建议。
+此项目适合java新手，所有使用到的工具均为基础功能，前后分离项目。大神请提建议。此项目可以实现分布式架设模块之间互相独立互不影响。
 
 模块说明：
 
     1.myfriend-api：
-        主要用于存放公共实体类，常用方法工具，数据库操作相关
+        主要用于存放公共实体类，常用方法工具，数据库操作相关，资源模块。
 
     2.myfriend-http：
-        基于轻量级dropwizard框架实现webserver接口
+        基于轻量级dropwizard框架实现webserver接口，主要的API接口。
 
     3.myfriend-websocket：
-        基于tomcat 的 websocket，用Spring Boot快速搭建。
+        基于tomcat 的 websocket，用Spring Boot快速搭建。主要处理接收消息队列信息及时推送处理事件消息。
 
 所需环境：
         jdk1.8：这个不用说了。
         mongodb：主力数据库存储信息。
         redis： 缓存在线状态及用户token和ID对应信息和websocket sessionID信息。
-        rabbitMQ：web接口与websocket内通讯工具和其他模块之间通讯工具。
+        rabbitMQ：myfriend-http接口模块与myfriend-websocket模块内通讯工具。
         其他，，待补充。
 
 构建工具:
