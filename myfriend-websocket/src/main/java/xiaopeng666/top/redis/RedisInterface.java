@@ -1,5 +1,6 @@
 package xiaopeng666.top.redis;
 
+import xiaopeng666.top.utils.mongo.MongoStorage;
 import xiaopeng666.top.utils.redis.RedisUtils;
 
 /**
@@ -7,4 +8,5 @@ import xiaopeng666.top.utils.redis.RedisUtils;
  */
 public interface RedisInterface {
     RedisUtils setInit();
+    MongoStorage setMongoInit();
 }

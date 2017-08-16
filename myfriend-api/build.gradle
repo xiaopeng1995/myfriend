@@ -20,4 +20,6 @@ dependencies {
     compile 'org.redisson:redisson:2.2.8'
     // mongodb
     compile 'org.mongodb:mongodb-driver:3.2.2'
+    //rabbit
+    compile 'com.rabbitmq:amqp-client:3.6.0'
 }

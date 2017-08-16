@@ -24,6 +24,7 @@
     <orderEntry type="library" name="Gradle: biz.paluch.redis:lettuce:4.1.Final" level="project" />
     <orderEntry type="library" name="Gradle: org.redisson:redisson:2.2.8" level="project" />
     <orderEntry type="library" name="Gradle: org.mongodb:mongodb-driver:3.2.2" level="project" />
+    <orderEntry type="library" name="Gradle: com.rabbitmq:amqp-client:3.6.0" level="project" />
     <orderEntry type="library" name="Gradle: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Gradle: xml-apis:xml-apis:1.0.b2" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.7.0" level="project" />

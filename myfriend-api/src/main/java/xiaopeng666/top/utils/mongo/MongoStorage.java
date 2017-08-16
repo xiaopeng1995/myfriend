@@ -9,13 +9,16 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.IndexOptions;
 import com.mongodb.client.model.UpdateOptions;
 import org.apache.commons.configuration.AbstractConfiguration;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import xiaopeng666.top.entity.User;
 import xiaopeng666.top.entity.UserRole;
+import xiaopeng666.top.entity.VerifyType;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 
 import static com.mongodb.client.model.Accumulators.sum;
@@ -59,8 +62,7 @@ public class MongoStorage {
             System.out.println("不存在的索引");
         }
         this.database.getCollection("users").createIndex(ascending("name"), new IndexOptions().unique(true));
-//        this.database.getCollection("sms_verifies").createIndex(ascending("mobile"));
-//        this.database.getCollection("sms_verifies").createIndex(ascending("updated_at"), new IndexOptions().expireAfter(1440L, TimeUnit.MINUTES));
+        this.database.getCollection("sms_verifies").createIndex(ascending("updated_at"), new IndexOptions().expireAfter(1440L, TimeUnit.MINUTES));
 //        this.database.getCollection("mail_verifies").createIndex(ascending("mail"));
 //        this.database.getCollection("mail_verifies").createIndex(ascending("updated_at"), new IndexOptions().expireAfter(5L, TimeUnit.MINUTES));
 //
@@ -105,7 +107,7 @@ public class MongoStorage {
     private List<MongoCredential> parseCredentials(String userName, String database, String password) {
         List<MongoCredential> result = new ArrayList<>();
         //MongoCredential类的createCredential方法可以指定认证的用户名，密码，以及使用的数据库，并返回一个MongoCredential对象
-        result.add(MongoCredential.createCredential(userName, database, password.toCharArray()));
+       // result.add(MongoCredential.createCredential(userName, database, password.toCharArray()));
         return result;
     }
 
@@ -124,6 +126,23 @@ public class MongoStorage {
                 .first();
         return d != null;
     }
+    /**
+     * 更新 用户密码
+     *
+     * @param user 用户的信息
+     * @return 用户（含Id）
+     */
+    public Boolean updateUserPwd(User user) {
+
+        Document d = new Document();
+
+        if (user.getPassword() != null) {
+            d.append("password", user.getPassword());
+        }
+        d.append("updated_at", new Date());
+        return this.database.getCollection("users").updateOne(and(eq("role", user.getRole().value()), ne("is_delete", true), eq("email", user.getEmail())), new Document().append("$set", d)).getModifiedCount() > 0;
+
+    }
 
     /**
      * 判断 用户邮箱 是否存在
@@ -139,7 +158,20 @@ public class MongoStorage {
         return d != null;
     }
 
-
+    /**
+     * 判断 验证码 是否有效
+     *
+     * @param email     手机号码
+     * @param type       验证类型
+     * @param verifyCode 验证码
+     * @return True 有效
+     */
+    public boolean isSmsVerifyCodeValid(String email, VerifyType type, String verifyCode) {
+        return this.database.getCollection("sms_verifies")
+                .find(and(eq("email", email), eq("type", type.value()), eq("verify_code", verifyCode)))
+                .projection(include("_id"))
+                .first() != null;
+    }
 
     /**
      * 判断 用户邮箱 是否存在

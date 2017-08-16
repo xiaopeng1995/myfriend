@@ -16,6 +16,9 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xiaopeng666.top.utils.mongo.MongoStorage;
+import xiaopeng666.top.utils.rabbitmq.RabittMQSend;
+import xiaopeng666.top.utils.redis.RedisUtils;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
@@ -27,18 +30,21 @@ import java.util.EnumSet;
 public class HttpApplication extends Application<HttpConfiguration> {
     private static final Logger logger = LoggerFactory.getLogger(HttpApplication.class);
 
-    private static PropertiesConfiguration mysqlConfig;
+    private static PropertiesConfiguration mongoConfig;
 
-    private static PropertiesConfiguration dataConfig;
+    private static PropertiesConfiguration mqConfig;
+
+    private static PropertiesConfiguration redisConfig;
 
     public static void main(String[] args) throws Exception {
         if (args.length > 3) {
-            mysqlConfig = new PropertiesConfiguration(args[0]);
-            dataConfig = new PropertiesConfiguration(args[1]);
+            mongoConfig = new PropertiesConfiguration(args[0]);
+            mqConfig = new PropertiesConfiguration(args[1]);
+            redisConfig= new PropertiesConfiguration(args[2]);
             args = ArrayUtils.subarray(args, args.length - 2, args.length);
         } else {
-            mysqlConfig = new PropertiesConfiguration("config/mysql.properties");
-            dataConfig = new PropertiesConfiguration("config/dataConfig.properties");
+            mongoConfig = new PropertiesConfiguration("config/mongo.properties");
+            mqConfig = new PropertiesConfiguration("config/rabbitmq.properties");
         }
         new HttpApplication().run(args);
     }
@@ -46,23 +52,26 @@ public class HttpApplication extends Application<HttpConfiguration> {
     @Override
     public void run(HttpConfiguration configuration, Environment environment) throws Exception {
 
-        ConnectionManager connectionManager = ConnectionManager.getInstance();
-        DataMySqlStorage mySqlStorage = new DataMySqlStorage();
+        final MongoStorage mongo = new MongoStorage();
+        final RedisUtils redisUtils = new RedisUtils();
+        final RabittMQSend rabittMQSend = new RabittMQSend();
 
         environment.lifecycle().manage(new Managed() {
             @Override
             public void start() throws Exception {
-                //初始化mysql连接池
-                // Mysql storage
+                //初始化mongo连接池
+                // mongo storage
                 logger.debug("Initializing Mysql storage ...");
-                connectionManager.init(mysqlConfig);
-                mySqlStorage.init(connectionManager, dataConfig);
+                mongo.init(mongoConfig);
+                redisUtils.init(redisConfig);
+                rabittMQSend.init(redisConfig);
+
             }
 
             @Override
             public void stop() throws Exception {
                 logger.debug("Destroying mongo storage ...");
-
+                mongo.destroy();
             }
         });
 

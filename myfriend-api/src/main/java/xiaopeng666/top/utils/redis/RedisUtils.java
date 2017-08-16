@@ -205,7 +205,14 @@ public class RedisUtils {
         config.setTestOnBorrow(BORROW);
         pool = new JedisPool(config, propertiesConfiguration.getString("redis.address"), propertiesConfiguration.getInt("redis.port"), TIMEOUT);
     }
-
+    public void init(AbstractConfiguration aconfig) {
+        JedisPoolConfig config = new JedisPoolConfig();
+        config.setMaxTotal(MAX_ACTIVE);
+        config.setMaxIdle(MAX_IDLE);
+        config.setMaxWaitMillis(MAX_WAIT);
+        config.setTestOnBorrow(BORROW);
+        pool = new JedisPool(config, aconfig.getString("redis.address"), aconfig.getInt("redis.port"), TIMEOUT);
+    }
     public void init(String ip, int p) {
         JedisPoolConfig config = new JedisPoolConfig();
         config.setMaxTotal(MAX_ACTIVE);

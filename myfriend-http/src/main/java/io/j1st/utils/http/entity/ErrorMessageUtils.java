@@ -14,11 +14,18 @@ public class ErrorMessageUtils {
         }
         PropertiesConfiguration msgConfig = null;
         try {
-            String path = "config/message_"+lang+".properties";
+            String path = "config/message_" + lang + ".properties";
             msgConfig = new PropertiesConfiguration(path);
             return msgConfig.getString(key);
         } catch (ConfigurationException e) {
-            e.printStackTrace();
+            try {
+                //本地测试
+                String path = "F:/test/message_" + lang + ".properties";
+                msgConfig = new PropertiesConfiguration(path);
+                return msgConfig.getString(key);
+            } catch (ConfigurationException ea) {
+                ea.printStackTrace();
+            }
         }
         return null;
     }

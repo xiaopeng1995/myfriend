@@ -12,4 +12,6 @@ dependencies {
     compile 'io.dropwizard:dropwizard-core:0.9.2'
     compile 'io.dropwizard:dropwizard-auth:0.9.2'
     compile 'commons-validator:commons-validator:1.5.0'
+    // project
+    compile project(':myfriend-api')
 }

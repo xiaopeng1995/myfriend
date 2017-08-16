@@ -25,6 +25,7 @@
     <orderEntry type="library" name="Gradle: biz.paluch.redis:lettuce:4.1.Final" level="project" />
     <orderEntry type="library" name="Gradle: org.redisson:redisson:2.2.8" level="project" />
     <orderEntry type="library" name="Gradle: org.mongodb:mongodb-driver:3.2.2" level="project" />
+    <orderEntry type="library" name="Gradle: com.rabbitmq:amqp-client:3.6.0" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Gradle: org.assertj:assertj-core:3.3.0" level="project" />
     <orderEntry type="library" name="Gradle: org.mockito:mockito-all:1.10.19" level="project" />

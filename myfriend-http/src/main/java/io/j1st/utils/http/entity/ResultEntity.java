@@ -7,13 +7,14 @@ package io.j1st.utils.http.entity;
 @SuppressWarnings("unused")
 public class ResultEntity<T> {
 
-    private String status ;
+    private String status;
     private T data;
     private Integer code;
     private String message;
 
     /**
      * 成功
+     *
      * @param data
      */
     public ResultEntity(T data) {
@@ -23,10 +24,11 @@ public class ResultEntity<T> {
 
     /**
      * 失败
+     *
      * @param code
      * @param message
      */
-    public ResultEntity(Integer code ,String message) {
+    public ResultEntity(Integer code, String message) {
         this.status = "fail";
         this.code = code;
         this.message = message;
@@ -35,13 +37,14 @@ public class ResultEntity<T> {
 
     /**
      * 失败
+     *
      * @param lang
      * @param code
      */
-    public ResultEntity(String lang ,Integer code) {
+    public ResultEntity(String lang, Integer code) {
         this.status = "fail";
         this.code = code;
-        this.message = ErrorMessageUtils.getMessage(lang,code.toString());
+        this.message = ErrorMessageUtils.getMessage(lang, code.toString());
     }
 
 
