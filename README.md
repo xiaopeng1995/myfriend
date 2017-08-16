@@ -53,7 +53,8 @@ websocket和rabbitmq使用说明：
 
 
 
-    目前演示地址：http://www.maomilaoshi.cn/myapp/myfriend/
+       [目前演示地址](http://www.maomilaoshi.cn/myapp/myfriend/) [http://www.maomilaoshi.cn/myapp/myfriend/](http://www.maomilaoshi.cn/myapp/myfriend/)
+
 
 
 
