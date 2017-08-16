@@ -48,7 +48,7 @@ websocket和rabbitmq使用说明：
 
     未来目标功能：利用websocket实现好友对战游戏。例如对打乒乓球，连机飞机大战等。
 
-    目前演示地址：http://www.maomilaoshi.cn/myprojects/chat/    目前前端页面已经舍弃PHP  这是老版。
+    目前演示地址：http://www.maomilaoshi.cn/myapp/myfriend/
 
 
 
