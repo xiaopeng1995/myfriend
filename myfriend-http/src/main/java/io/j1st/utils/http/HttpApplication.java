@@ -8,8 +8,6 @@ import io.dropwizard.Application;
 import io.dropwizard.lifecycle.Managed;
 import io.dropwizard.setup.Environment;
 
-import io.j1st.utils.http.mysql.DataMySqlStorage;
-import io.j1st.utils.http.mysql.manager.ConnectionManager;
 import io.j1st.utils.http.resource.*;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.lang3.ArrayUtils;
@@ -30,21 +28,16 @@ import java.util.EnumSet;
 public class HttpApplication extends Application<HttpConfiguration> {
     private static final Logger logger = LoggerFactory.getLogger(HttpApplication.class);
 
-    private static PropertiesConfiguration mongoConfig;
-
-    private static PropertiesConfiguration mqConfig;
-
-    private static PropertiesConfiguration redisConfig;
+    private static PropertiesConfiguration serverConfig;
 
     public static void main(String[] args) throws Exception {
-        if (args.length > 3) {
-            mongoConfig = new PropertiesConfiguration(args[0]);
-            mqConfig = new PropertiesConfiguration(args[1]);
-            redisConfig= new PropertiesConfiguration(args[2]);
+        System.out.println(args);
+        if (args.length > 1) {
+
+            serverConfig = new PropertiesConfiguration(args[0]);
             args = ArrayUtils.subarray(args, args.length - 2, args.length);
         } else {
-            mongoConfig = new PropertiesConfiguration("config/mongo.properties");
-            mqConfig = new PropertiesConfiguration("config/rabbitmq.properties");
+            serverConfig = new PropertiesConfiguration("config/serverConf.properties");
         }
         new HttpApplication().run(args);
     }
@@ -62,9 +55,9 @@ public class HttpApplication extends Application<HttpConfiguration> {
                 //初始化mongo连接池
                 // mongo storage
                 logger.debug("Initializing Mysql storage ...");
-                mongo.init(mongoConfig);
-                redisUtils.init(redisConfig);
-                rabittMQSend.init(redisConfig);
+                mongo.init(serverConfig);
+                redisUtils.init(serverConfig);
+                rabittMQSend.init(serverConfig);
 
             }
 
@@ -84,7 +77,7 @@ public class HttpApplication extends Application<HttpConfiguration> {
         cors.setInitParameter("exposedHeaders", "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval");
         cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
 
-        environment.jersey().register(new DataInsert(mySqlStorage));
+        environment.jersey().register(new UserResource(mongo,redisUtils));
 
 
         // config jackson

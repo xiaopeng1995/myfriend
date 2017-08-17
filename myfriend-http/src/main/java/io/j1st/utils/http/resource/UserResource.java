@@ -4,6 +4,7 @@ import com.google.common.base.Optional;
 import com.mongodb.MongoException;
 import io.dropwizard.auth.Auth;
 import io.j1st.utils.http.entity.ResultEntity;
+import io.j1st.utils.http.entity.user.MailRequest;
 import io.j1st.utils.http.entity.user.SignUpRequest;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.apache.commons.lang.StringUtils;
@@ -11,11 +12,15 @@ import org.bson.types.ObjectId;
 import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xiaopeng666.top.entity.Event_Type;
 import xiaopeng666.top.entity.User;
 import xiaopeng666.top.entity.UserRole;
 import xiaopeng666.top.entity.VerifyType;
 import xiaopeng666.top.entity.error.ErrorCode;
 import xiaopeng666.top.utils.EncryptionUtils;
+import xiaopeng666.top.utils.RandomNumberUtils;
+import xiaopeng666.top.utils.SendMailUtil;
+import xiaopeng666.top.utils.event.EventLogUtils;
 import xiaopeng666.top.utils.mongo.MongoStorage;
 import xiaopeng666.top.utils.redis.RedisUtils;
 
@@ -144,7 +149,7 @@ public class UserResource extends AbstractResource {
         try {
             u.setPassword(EncryptionUtils.encryptPassword(signUp.getPassword()));
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            throw new InternalException();
+            throw new InternalException("");
         }
         u.setEmail(signUp.getEmail());
         u.setMobile(signUp.getMobile());
@@ -153,7 +158,7 @@ public class UserResource extends AbstractResource {
 
         try {
 
-            if (signUp.getType()==VerifyType.FINDPWD) {
+            if (signUp.getType() == VerifyType.FINDPWD) {
                 this.mongo.updateUserPwd(u);
                 return new ResultEntity<>(true);
             } else {
@@ -164,7 +169,7 @@ public class UserResource extends AbstractResource {
         }
         //保存添加日志
         String description = u.getName() + " create " + u.getRole() + " account";
-        EventLogUtils.insertInfoEventLog(mongo, u.getId(), description);
+        EventLogUtils.insertInfoEventLog(mongo, u.getId(), Event_Type.ADD, description);
         return new ResultEntity<>(true);
     }
 
@@ -172,200 +177,171 @@ public class UserResource extends AbstractResource {
      * 发送激活码注册使用
      *
      * @param lang
-     * @param infos
+     * @param info
      * @return
      */
     @Path("/email/send")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public ResultEntity creatuser(@HeaderParam("Accept-Language") @DefaultValue("zh") String lang,
-                                  @Valid MailActivationCodeRequest infos) {
+                                  @Valid MailRequest info) {
         logger.debug("Ready to send the activation code");
         //取前两位代表
         if (lang.length() > 2) {
             lang = lang.substring(0, 2);
         }
-        List<Map> infosRe = new ArrayList<>();
-        List<MailRequest> mailRequestList = infos.getMailRequestList();
-        if (mailRequestList != null && mailRequestList.size() > 0) {
-            for (MailRequest info : mailRequestList) {
-                Map infoRe = new HashMap();
-                //是否发送成功
-                boolean b = false;
-                //创建激活码
-                try {
-                    String code = RandomNumberUtils.getRandom().toLowerCase();
-                    //储存激活码
-                    logger.debug("save vcode {} ,type:{}", info.getEmail(), getRoleStringToInt(info.getRole()));
-                    this.mongo.updateSmsVerifyCode(info.getEmail(), VerifyType.valueOf(getRoleStringToInt(info.getRole())), code);
-                    //发邮件
-                    String url = emailConfig.getString("url") + "/active?role=" + info.getRole() + "&email=" + info.getEmail();
-                    //判断中英文
-                    if (info.getType() != 2) {
-                        if (lang.startsWith("en")) {
-                            String role = "Operator";
-                            if ("DEVELOPER".equals(info.getRole())) {
-                                role = "Developer";
-                            }
-                            SendMailUtil.sendRegisteredEmail("en", "Confirm the registration",
-                                    info.getEmail(), code, url, role);
-                        } else {
-                            String role = "系统运营者";
-                            if ("DEVELOPER".equals(info.getRole())) {
-                                role = "产品开发者";
-                            }
-                            SendMailUtil.sendRegisteredEmail("zh", "欢迎注册J1ST.IO",
-                                    info.getEmail(), code, url, role);
-                        }
-                        b = true;
-                    } else {//忘记密码
-                        if (lang.startsWith("en")) {
-                            String role = "Operator";
-                            if ("DEVELOPER".equals(info.getRole())) {
-                                role = "Developer";
-                            }
-                            SendMailUtil.findPasswordEmail("en", " Find your password of J1ST.IO " + role + " Account?",
-                                    info.getEmail(), code);
-                        } else {
-                            String role = "系统运营者";
-                            if ("DEVELOPER".equals(info.getRole())) {
-                                role = "产品开发者";
-                            }
-                            SendMailUtil.findPasswordEmail("zh", "正在找回J1ST.IO（" + role + "）账户密码？",
-                                    info.getEmail(), code);
-                        }
-                    }
 
-                } catch (Exception e) {
-                    logger.error(e.getMessage());
-                }
-
-                infoRe.put(info.getEmail(), b);
-                infosRe.add(infoRe);
-            }
-        }
-        return new ResultEntity<>(infosRe);
-    }
-
-    /**
-     * 验证激活码找回密码
-     *
-     * @return
-     */
-    @Path("/email/pwd/validation")
-    @GET
-    @Consumes(MediaType.APPLICATION_JSON)
-    public ResultEntity validationPwd(@HeaderParam("Accept-Language") @DefaultValue("zh") String lang,
-                                      @QueryParam("email") Optional<String> email,
-                                      @QueryParam("role") Optional<String> role,
-                                      @QueryParam("vcode") Optional<String> vcode) {
-        String token = null;
-        //激活码效验
-        if (vcode != null) {
-            if (!this.mongo.isSmsVerifyCodeValid(email.get(), VerifyType.valueOf(getRoleStringToInt(role.get())), vcode.get())) {
-                return new ResultEntity(lang, ErrorCode.CODE_ERROR);
-            } else {
-                token = mongo.getUserTokenByMail(email.get(), UserRole.valueOf(role.get()));
-            }
-        } else {
-            return new ResultEntity(lang, ErrorCode.PARAMS_VALID);
-        }
-        if (token == null) {
-            return new ResultEntity(lang, ErrorCode.USER_NOT_EXISTS);
-        }
-        Map m = new HashMap();
-        m.put("token", token);
-        return new ResultEntity<>(m);
-    }
-
-    /**
-     * 发送激活码找回密码
-     *
-     * @param lang
-     * @return
-     */
-    @Path("/email/pwd/find")
-    @GET
-    @Consumes(MediaType.APPLICATION_JSON)
-    public ResultEntity findPwd(@HeaderParam("Accept-Language") @DefaultValue("zh") String lang,
-                                @QueryParam("email") Optional<String> email,
-                                @QueryParam("role") Optional<UserRole> role) {
-        logger.debug("Ready to send the activation code");
-        if (!this.mongo.isUserEmailExist(email.get(), role.get())) {
-            return new ResultEntity(lang, ErrorCode.USER_NOT_EXISTS);
-        }
-        //取前两位代表
-        if (lang.length() > 2) {
-            lang = lang.substring(0, 2);
-        }
+        Map infoRe = new HashMap();
         //是否发送成功
         boolean b = false;
         //创建激活码
         try {
             String code = RandomNumberUtils.getRandom().toLowerCase();
             //储存激活码
-            logger.debug("email:{}pwd/find role{}", email.get(), role.get().name());
-            this.mongo.updateSmsVerifyCode(email.get(), VerifyType.valueOf(getRoleStringToInt(role.get().name())), code);
-            //发邮件
-            //判断中英文
-            if (lang.startsWith("en")) {
-                SendMailUtil.findPasswordEmail("en", "Are recovered J1ST. IO (" + role.get().name() + ") account password", email.get(), code);
-            } else {
-                SendMailUtil.findPasswordEmail("zh", "正在找回J1ST.IO（" + role.get().name() + "）账户密码？", email.get(), code);
-            }
+            logger.debug("save vcode {} ,type:{}", info.getEmail(), info.getRole());
 
-            b = true;
+
+            //判断中英文
+            if (info.getType() != 2) {//注册
+                this.mongo.updateSmsVerifyCode(info.getEmail(), VerifyType.REGISTER, code);
+                SendMailUtil.sendEmail("欢迎注册Myfriend",
+                        info.getEmail(), "您的激活码是："+code);
+
+                b = true;
+            } else {//忘记密码
+                this.mongo.updateSmsVerifyCode(info.getEmail(), VerifyType.FINDPWD, code);
+                SendMailUtil.sendEmail("找回Myfriend密码",
+                        info.getEmail(), "您的激活码是："+code);
+
+            }
 
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
-        return new ResultEntity<>(b);
-    }
 
-    /**
-     * 查询邮箱状态
-     *
-     * @param lang
-     * @param infos
-     * @return 邮箱状态
-     */
-    @Path("/email/state")
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public ResultEntity findEmailState(@HeaderParam("Accept-Language") @DefaultValue("zh") String lang,
-                                       @Valid MailActivationCodeRequest infos) {
-        logger.debug("Ready to send the activation code");
-        //取前两位代表
-        if (lang.length() > 2) {
-            lang = lang.substring(0, 2);
-        }
-        List<Map> infosRe = new ArrayList<>();
-        for (MailRequest info : infos.getMailRequestList()) {
-            //格式错误
-            if (info.getEmail() == null || info.getRole() == null) {
-                return new ResultEntity(lang, ErrorCode.PARAMS_VALID);
-            }
-            Map infoRe = new HashMap();
-            //是否发送成功
-            int state = 0;
-            String email = info.getEmail();
-            String role = info.getRole();
-            //创建激活码
-            try {
-                if (this.mongo.isUserEmailExist(email, UserRole.valueOf(role))) {
-                    state = 2;
-                } else if (radisUtils.exists(email + role)) {
-                    state = 1;
-                }
-            } catch (Exception e) {
-                logger.error(e.getMessage());
-            }
-            infoRe.put(info.getEmail(), state);
-            infosRe.add(infoRe);
-        }
-
-        return new ResultEntity<>(infosRe);
+        infoRe.put(info.getEmail(), b);
+        return new ResultEntity<>(infoRe);
     }
+//
+//    /**
+//     * 验证激活码找回密码
+//     *
+//     * @return
+//     */
+//    @Path("/email/pwd/validation")
+//    @GET
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public ResultEntity validationPwd(@HeaderParam("Accept-Language") @DefaultValue("zh") String lang,
+//                                      @QueryParam("email") Optional<String> email,
+//                                      @QueryParam("role") Optional<String> role,
+//                                      @QueryParam("vcode") Optional<String> vcode) {
+//        String token = null;
+//        //激活码效验
+//        if (vcode != null) {
+//            if (!this.mongo.isSmsVerifyCodeValid(email.get(), VerifyType.valueOf(getRoleStringToInt(role.get())), vcode.get())) {
+//                return new ResultEntity(lang, ErrorCode.CODE_ERROR);
+//            } else {
+//                token = mongo.getUserTokenByMail(email.get(), UserRole.valueOf(role.get()));
+//            }
+//        } else {
+//            return new ResultEntity(lang, ErrorCode.PARAMS_VALID);
+//        }
+//        if (token == null) {
+//            return new ResultEntity(lang, ErrorCode.USER_NOT_EXISTS);
+//        }
+//        Map m = new HashMap();
+//        m.put("token", token);
+//        return new ResultEntity<>(m);
+//    }
+//
+//    /**
+//     * 发送激活码找回密码
+//     *
+//     * @param lang
+//     * @return
+//     */
+//    @Path("/email/pwd/find")
+//    @GET
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public ResultEntity findPwd(@HeaderParam("Accept-Language") @DefaultValue("zh") String lang,
+//                                @QueryParam("email") Optional<String> email,
+//                                @QueryParam("role") Optional<UserRole> role) {
+//        logger.debug("Ready to send the activation code");
+//        if (!this.mongo.isUserEmailExist(email.get(), role.get())) {
+//            return new ResultEntity(lang, ErrorCode.USER_NOT_EXISTS);
+//        }
+//        //取前两位代表
+//        if (lang.length() > 2) {
+//            lang = lang.substring(0, 2);
+//        }
+//        //是否发送成功
+//        boolean b = false;
+//        //创建激活码
+//        try {
+//            String code = RandomNumberUtils.getRandom().toLowerCase();
+//            //储存激活码
+//            logger.debug("email:{}pwd/find role{}", email.get(), role.get().name());
+//            this.mongo.updateSmsVerifyCode(email.get(), VerifyType.valueOf(getRoleStringToInt(role.get().name())), code);
+//            //发邮件
+//            //判断中英文
+//            if (lang.startsWith("en")) {
+//                SendMailUtil.findPasswordEmail("en", "Are recovered J1ST. IO (" + role.get().name() + ") account password", email.get(), code);
+//            } else {
+//                SendMailUtil.findPasswordEmail("zh", "正在找回J1ST.IO（" + role.get().name() + "）账户密码？", email.get(), code);
+//            }
+//
+//            b = true;
+//
+//        } catch (Exception e) {
+//            logger.error(e.getMessage());
+//        }
+//        return new ResultEntity<>(b);
+//    }
+//
+//    /**
+//     * 查询邮箱状态
+//     *
+//     * @param lang
+//     * @param infos
+//     * @return 邮箱状态
+//     */
+//    @Path("/email/state")
+//    @POST
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public ResultEntity findEmailState(@HeaderParam("Accept-Language") @DefaultValue("zh") String lang,
+//                                       @Valid MailActivationCodeRequest infos) {
+//        logger.debug("Ready to send the activation code");
+//        //取前两位代表
+//        if (lang.length() > 2) {
+//            lang = lang.substring(0, 2);
+//        }
+//        List<Map> infosRe = new ArrayList<>();
+//        for (MailRequest info : infos.getMailRequestList()) {
+//            //格式错误
+//            if (info.getEmail() == null || info.getRole() == null) {
+//                return new ResultEntity(lang, ErrorCode.PARAMS_VALID);
+//            }
+//            Map infoRe = new HashMap();
+//            //是否发送成功
+//            int state = 0;
+//            String email = info.getEmail();
+//            String role = info.getRole();
+//            //创建激活码
+//            try {
+//                if (this.mongo.isUserEmailExist(email, UserRole.valueOf(role))) {
+//                    state = 2;
+//                } else if (radisUtils.exists(email + role)) {
+//                    state = 1;
+//                }
+//            } catch (Exception e) {
+//                logger.error(e.getMessage());
+//            }
+//            infoRe.put(info.getEmail(), state);
+//            infosRe.add(infoRe);
+//        }
+//
+//        return new ResultEntity<>(infosRe);
+//    }
 //
 //    /**
 //     * 更新 用户信息

@@ -13,6 +13,7 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import xiaopeng666.top.entity.Event_Log;
 import xiaopeng666.top.entity.User;
 import xiaopeng666.top.entity.UserRole;
 import xiaopeng666.top.entity.VerifyType;
@@ -49,7 +50,8 @@ public class MongoStorage {
                 "admin",
                 config.getString("mongo.password"));
         if (addresses.size() == 1) {
-            this.client = new MongoClient(addresses.get(0), credentials);
+            this.client = new MongoClient(addresses.get(0));
+            // this.client = new MongoClient(addresses.get(0), credentials);
         } else {
             this.client = new MongoClient(addresses, credentials);
         }
@@ -107,7 +109,7 @@ public class MongoStorage {
     private List<MongoCredential> parseCredentials(String userName, String database, String password) {
         List<MongoCredential> result = new ArrayList<>();
         //MongoCredential类的createCredential方法可以指定认证的用户名，密码，以及使用的数据库，并返回一个MongoCredential对象
-       // result.add(MongoCredential.createCredential(userName, database, password.toCharArray()));
+        // result.add(MongoCredential.createCredential(userName, database, password.toCharArray()));
         return result;
     }
 
@@ -126,6 +128,7 @@ public class MongoStorage {
                 .first();
         return d != null;
     }
+
     /**
      * 更新 用户密码
      *
@@ -159,9 +162,46 @@ public class MongoStorage {
     }
 
     /**
+     * 新增 Event_log
+     *
+     * @param event 事件
+     * @return 事件（含Id）
+     */
+    public Event_Log insertEvent(Event_Log event) {
+        Document d = new Document();
+
+        d.append("action_type", event.getAction_type().value());
+        d.append("email", event.getEmail());
+        d.append("action_date", new Date());
+        d.append("action_description", event.getAction_description());
+        d.append("action_data", event.getAction_data());
+
+        if (event.getController() != null) {
+            d.append("controller", event.getController());
+        }
+        if (event.getFrom() != null) {
+            d.append("from", event.getFrom());
+        }
+        if (event.getTo() != null) {
+            d.append("to", event.getTo());
+        }
+        if (event.getBy() != null) {
+            d.append("by", event.getBy());
+        }
+        d.append("action_date", event.getAction_date());
+        d.append("checked", false);
+        if (event.getRole() != null) {
+            d.append("role", event.getRole());
+        }
+        this.database.getCollection("event_logs").insertOne(d);
+        event.setId(d.getObjectId("_id"));
+        return event;
+    }
+
+    /**
      * 判断 验证码 是否有效
      *
-     * @param email     手机号码
+     * @param email      手机号码
      * @param type       验证类型
      * @param verifyCode 验证码
      * @return True 有效
@@ -171,6 +211,28 @@ public class MongoStorage {
                 .find(and(eq("email", email), eq("type", type.value()), eq("verify_code", verifyCode)))
                 .projection(include("_id"))
                 .first() != null;
+    }
+
+    /**
+     * 更新或新增 验证码
+     *
+     * @param email      手机号码
+     * @param type       验证类型
+     * @param verifyCode 验证码
+     * @return True 成功更新
+     */
+    public boolean updateSmsVerifyCode(String email, VerifyType type, String verifyCode) {
+        Document d = new Document();
+        d.append("email", email);
+        d.append("type", type.value());
+        d.append("verify_code", verifyCode);
+        d.append("updated_at", new Date());
+        long a = this.database.getCollection("sms_verifies")
+                .updateOne(and(eq("email", email), eq("type", type.value())),
+                        new Document()
+                                .append("$set", d),
+                        new UpdateOptions().upsert(true)).getMatchedCount();
+        return a > 0;
     }
 
     /**
@@ -550,7 +612,6 @@ public class MongoStorage {
         u.setUpdatedAt(d.getDate("updated_at"));
         return u;
     }
-
 
 
     /**

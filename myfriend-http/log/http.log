@@ -1,0 +1,2047 @@
+2017-08-17 13:40:30.324 [main] INFO  o.e.jetty.util.log - Logging initialized @2084ms
+ 2017-08-17 13:40:30.530 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 13:40:30.542 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 13:40:30.557 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 13:40:30.599 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@4ef27d66{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 13:40:30.601 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 13:40:30.616 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 13:40:30.797 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[127.0.0.1:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 13:40:30.896 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=127.0.0.1:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 13:40:31.911 [cluster-ClusterId{value='59952c4edf9f112ab840d7f0', description='null'}-127.0.0.1:27017] INFO  o.m.driver.cluster - Exception in monitor thread while connecting to server 127.0.0.1:27017
+ ! com.mongodb.MongoSocketOpenException: Exception opening socket
+! at com.mongodb.connection.SocketStream.open(SocketStream.java:63)
+! at com.mongodb.connection.InternalStreamConnection.open(InternalStreamConnection.java:114)
+! at com.mongodb.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:128)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: java.net.ConnectException: Connection refused: connect
+! at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+! at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+! at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+! at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+! at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+! at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+! at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+! at java.net.Socket.connect(Socket.java:589)
+! at com.mongodb.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:50)
+! at com.mongodb.connection.SocketStream.open(SocketStream.java:58)
+! ... 3 common frames omitted
+2017-08-17 13:41:00.898 [main] WARN  o.e.j.u.c.AbstractLifeCycle - FAILED io.j1st.utils.http.HttpApplication$1@4ced35ed: com.mongodb.MongoTimeoutException: Timed out after 30000 ms while waiting for a server that matches WritableServerSelector. Client view of cluster state is {type=UNKNOWN, servers=[{address=127.0.0.1:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketOpenException: Exception opening socket}, caused by {java.net.ConnectException: Connection refused: connect}}]
+ ! com.mongodb.MongoTimeoutException: Timed out after 30000 ms while waiting for a server that matches WritableServerSelector. Client view of cluster state is {type=UNKNOWN, servers=[{address=127.0.0.1:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketOpenException: Exception opening socket}, caused by {java.net.ConnectException: Connection refused: connect}}]
+! at com.mongodb.connection.BaseCluster.createTimeoutException(BaseCluster.java:369)
+! at com.mongodb.connection.BaseCluster.selectServer(BaseCluster.java:101)
+! at com.mongodb.binding.ClusterBinding$ClusterBindingConnectionSource.<init>(ClusterBinding.java:75)
+! at com.mongodb.binding.ClusterBinding$ClusterBindingConnectionSource.<init>(ClusterBinding.java:71)
+! at com.mongodb.binding.ClusterBinding.getWriteConnectionSource(ClusterBinding.java:68)
+! at com.mongodb.operation.CommandOperationHelper.executeWrappedCommandProtocol(CommandOperationHelper.java:158)
+! at com.mongodb.operation.CommandOperationHelper.executeWrappedCommandProtocol(CommandOperationHelper.java:133)
+! at com.mongodb.operation.CommandOperationHelper.executeWrappedCommandProtocol(CommandOperationHelper.java:128)
+! at com.mongodb.operation.CommandOperationHelper.executeWrappedCommandProtocol(CommandOperationHelper.java:118)
+! at com.mongodb.operation.DropIndexOperation.execute(DropIndexOperation.java:69)
+! at com.mongodb.operation.DropIndexOperation.execute(DropIndexOperation.java:40)
+! at com.mongodb.Mongo.execute(Mongo.java:781)
+! at com.mongodb.Mongo$2.execute(Mongo.java:764)
+! at com.mongodb.MongoCollectionImpl.dropIndex(MongoCollectionImpl.java:479)
+! at xiaopeng666.top.utils.mongo.MongoStorage.init(MongoStorage.java:61)
+! at io.j1st.utils.http.HttpApplication$1.start(HttpApplication.java:58)
+! at io.dropwizard.lifecycle.JettyManaged.doStart(JettyManaged.java:27)
+! at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+! at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132)
+! at org.eclipse.jetty.server.Server.start(Server.java:387)
+! at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114)
+! at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61)
+! at org.eclipse.jetty.server.Server.doStart(Server.java:354)
+! at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+! at io.dropwizard.cli.ServerCommand.run(ServerCommand.java:43)
+! at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:41)
+! at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:77)
+! at io.dropwizard.cli.Cli.run(Cli.java:70)
+! at io.dropwizard.Application.run(Application.java:80)
+! at io.j1st.utils.http.HttpApplication.main(HttpApplication.java:42)
+! at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+! at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+! at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+! at java.lang.reflect.Method.invoke(Method.java:497)
+! at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144)
+2017-08-17 13:41:00.968 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@4ef27d66{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 13:41:00.969 [main] WARN  o.e.j.u.c.AbstractLifeCycle - FAILED org.eclipse.jetty.server.Server@1c4ee95c: com.mongodb.MongoTimeoutException: Timed out after 30000 ms while waiting for a server that matches WritableServerSelector. Client view of cluster state is {type=UNKNOWN, servers=[{address=127.0.0.1:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketOpenException: Exception opening socket}, caused by {java.net.ConnectException: Connection refused: connect}}]
+ ! com.mongodb.MongoTimeoutException: Timed out after 30000 ms while waiting for a server that matches WritableServerSelector. Client view of cluster state is {type=UNKNOWN, servers=[{address=127.0.0.1:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketOpenException: Exception opening socket}, caused by {java.net.ConnectException: Connection refused: connect}}]
+! at com.mongodb.connection.BaseCluster.createTimeoutException(BaseCluster.java:369)
+! at com.mongodb.connection.BaseCluster.selectServer(BaseCluster.java:101)
+! at com.mongodb.binding.ClusterBinding$ClusterBindingConnectionSource.<init>(ClusterBinding.java:75)
+! at com.mongodb.binding.ClusterBinding$ClusterBindingConnectionSource.<init>(ClusterBinding.java:71)
+! at com.mongodb.binding.ClusterBinding.getWriteConnectionSource(ClusterBinding.java:68)
+! at com.mongodb.operation.CommandOperationHelper.executeWrappedCommandProtocol(CommandOperationHelper.java:158)
+! at com.mongodb.operation.CommandOperationHelper.executeWrappedCommandProtocol(CommandOperationHelper.java:133)
+! at com.mongodb.operation.CommandOperationHelper.executeWrappedCommandProtocol(CommandOperationHelper.java:128)
+! at com.mongodb.operation.CommandOperationHelper.executeWrappedCommandProtocol(CommandOperationHelper.java:118)
+! at com.mongodb.operation.DropIndexOperation.execute(DropIndexOperation.java:69)
+! at com.mongodb.operation.DropIndexOperation.execute(DropIndexOperation.java:40)
+! at com.mongodb.Mongo.execute(Mongo.java:781)
+! at com.mongodb.Mongo$2.execute(Mongo.java:764)
+! at com.mongodb.MongoCollectionImpl.dropIndex(MongoCollectionImpl.java:479)
+! at xiaopeng666.top.utils.mongo.MongoStorage.init(MongoStorage.java:61)
+! at io.j1st.utils.http.HttpApplication$1.start(HttpApplication.java:58)
+! at io.dropwizard.lifecycle.JettyManaged.doStart(JettyManaged.java:27)
+! at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+! at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132)
+! at org.eclipse.jetty.server.Server.start(Server.java:387)
+! at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114)
+! at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61)
+! at org.eclipse.jetty.server.Server.doStart(Server.java:354)
+! at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+! at io.dropwizard.cli.ServerCommand.run(ServerCommand.java:43)
+! at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:41)
+! at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:77)
+! at io.dropwizard.cli.Cli.run(Cli.java:70)
+! at io.dropwizard.Application.run(Application.java:80)
+! at io.j1st.utils.http.HttpApplication.main(HttpApplication.java:42)
+! at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+! at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+! at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+! at java.lang.reflect.Method.invoke(Method.java:497)
+! at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144)
+2017-08-17 13:41:00.969 [main] ERROR i.d.c.ServerCommand - Unable to start server, shutting down
+ ! com.mongodb.MongoTimeoutException: Timed out after 30000 ms while waiting for a server that matches WritableServerSelector. Client view of cluster state is {type=UNKNOWN, servers=[{address=127.0.0.1:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketOpenException: Exception opening socket}, caused by {java.net.ConnectException: Connection refused: connect}}]
+! at com.mongodb.connection.BaseCluster.createTimeoutException(BaseCluster.java:369)
+! at com.mongodb.connection.BaseCluster.selectServer(BaseCluster.java:101)
+! at com.mongodb.binding.ClusterBinding$ClusterBindingConnectionSource.<init>(ClusterBinding.java:75)
+! at com.mongodb.binding.ClusterBinding$ClusterBindingConnectionSource.<init>(ClusterBinding.java:71)
+! at com.mongodb.binding.ClusterBinding.getWriteConnectionSource(ClusterBinding.java:68)
+! at com.mongodb.operation.CommandOperationHelper.executeWrappedCommandProtocol(CommandOperationHelper.java:158)
+! at com.mongodb.operation.CommandOperationHelper.executeWrappedCommandProtocol(CommandOperationHelper.java:133)
+! at com.mongodb.operation.CommandOperationHelper.executeWrappedCommandProtocol(CommandOperationHelper.java:128)
+! at com.mongodb.operation.CommandOperationHelper.executeWrappedCommandProtocol(CommandOperationHelper.java:118)
+! at com.mongodb.operation.DropIndexOperation.execute(DropIndexOperation.java:69)
+! at com.mongodb.operation.DropIndexOperation.execute(DropIndexOperation.java:40)
+! at com.mongodb.Mongo.execute(Mongo.java:781)
+! at com.mongodb.Mongo$2.execute(Mongo.java:764)
+! at com.mongodb.MongoCollectionImpl.dropIndex(MongoCollectionImpl.java:479)
+! at xiaopeng666.top.utils.mongo.MongoStorage.init(MongoStorage.java:61)
+! at io.j1st.utils.http.HttpApplication$1.start(HttpApplication.java:58)
+! at io.dropwizard.lifecycle.JettyManaged.doStart(JettyManaged.java:27)
+! at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+! at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132)
+! at org.eclipse.jetty.server.Server.start(Server.java:387)
+! at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114)
+! at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61)
+! at org.eclipse.jetty.server.Server.doStart(Server.java:354)
+! at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+! at io.dropwizard.cli.ServerCommand.run(ServerCommand.java:43)
+! at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:41)
+! at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:77)
+! at io.dropwizard.cli.Cli.run(Cli.java:70)
+! at io.dropwizard.Application.run(Application.java:80)
+! at io.j1st.utils.http.HttpApplication.main(HttpApplication.java:42)
+! at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+! at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+! at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+! at java.lang.reflect.Method.invoke(Method.java:497)
+! at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144)
+2017-08-17 13:41:00.973 [main] INFO  o.e.j.s.ServerConnector - Stopped HttpApplication@4ef27d66{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 13:42:38.066 [main] INFO  o.e.jetty.util.log - Logging initialized @1948ms
+ 2017-08-17 13:42:38.182 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 13:42:38.190 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 13:42:38.205 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 13:42:38.234 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@4ef27d66{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 13:42:38.237 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 13:42:38.244 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 13:42:38.404 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 13:42:38.471 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 13:42:58.547 [cluster-ClusterId{value='59952ccedf9f112f34cd29ab', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Exception in monitor thread while connecting to server 113.209.37.40:27017
+ ! com.mongodb.MongoSocketReadTimeoutException: Timeout while receiving message
+! at com.mongodb.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:474)
+! at com.mongodb.connection.InternalStreamConnection.receiveMessage(InternalStreamConnection.java:225)
+! at com.mongodb.connection.CommandHelper.receiveReply(CommandHelper.java:134)
+! at com.mongodb.connection.CommandHelper.receiveCommandResult(CommandHelper.java:121)
+! at com.mongodb.connection.CommandHelper.executeCommand(CommandHelper.java:32)
+! at com.mongodb.connection.InternalStreamConnectionInitializer.initializeConnectionDescription(InternalStreamConnectionInitializer.java:83)
+! at com.mongodb.connection.InternalStreamConnectionInitializer.initialize(InternalStreamConnectionInitializer.java:43)
+! at com.mongodb.connection.InternalStreamConnection.open(InternalStreamConnection.java:115)
+! at com.mongodb.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:128)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: java.net.SocketTimeoutException: Read timed out
+! at java.net.SocketInputStream.socketRead0(Native Method)
+! at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+! at java.net.SocketInputStream.read(SocketInputStream.java:170)
+! at java.net.SocketInputStream.read(SocketInputStream.java:141)
+! at com.mongodb.connection.SocketStream.read(SocketStream.java:85)
+! at com.mongodb.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:491)
+! at com.mongodb.connection.InternalStreamConnection.receiveMessage(InternalStreamConnection.java:221)
+! ... 8 common frames omitted
+2017-08-17 13:42:59.236 [cluster-ClusterId{value='59952ccedf9f112f34cd29ab', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:273}] to 113.209.37.40:27017
+ 2017-08-17 13:42:59.270 [cluster-ClusterId{value='59952ccedf9f112f34cd29ab', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=33478622}
+ 2017-08-17 13:42:59.391 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:3, serverValue:275}] to 113.209.37.40:27017
+ 2017-08-17 13:43:00.510 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 13:43:00.511 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@71f0b72e{/,null,AVAILABLE}
+ 2017-08-17 13:43:00.518 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 13:43:00.519 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 13:43:00.524 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@38af1bf6{/admin,null,AVAILABLE}
+ 2017-08-17 13:43:00.574 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@4ef27d66{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 13:43:00.575 [main] INFO  o.e.j.server.Server - Started @24458ms
+ 2017-08-17 13:51:10.478 [main] INFO  o.e.jetty.util.log - Logging initialized @2016ms
+ 2017-08-17 13:51:10.598 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 13:51:10.606 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 13:51:10.621 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 13:51:10.650 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@4ef27d66{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 13:51:10.653 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 13:51:10.662 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 13:51:10.830 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 13:51:10.917 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 13:51:11.053 [cluster-ClusterId{value='59952ecedf9f1137a00fc006', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:280}] to 113.209.37.40:27017
+ 2017-08-17 13:51:11.085 [cluster-ClusterId{value='59952ecedf9f1137a00fc006', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=30867288}
+ 2017-08-17 13:51:11.210 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:281}] to 113.209.37.40:27017
+ 2017-08-17 13:51:12.399 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 13:51:12.401 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@7a34f66a{/,null,AVAILABLE}
+ 2017-08-17 13:51:12.407 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 13:51:12.409 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 13:51:12.415 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@129bd55d{/admin,null,AVAILABLE}
+ 2017-08-17 13:51:12.469 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@4ef27d66{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 13:51:12.469 [main] INFO  o.e.j.server.Server - Started @4008ms
+ 2017-08-17 13:55:50.310 [dw-21 - POST /user] DEBUG i.j.u.h.r.UserResource - Process signUp request: SignUpRequest{name='null', email='pxiao@zeninfor.com', mobile='null', role=PLAYER, vcode=null}
+ 2017-08-17 13:55:50.387 [dw-21 - POST /user] ERROR i.d.j.e.LoggingExceptionMapper - Error handling a request: 9867e5d0984acaa2
+ ! java.lang.NullPointerException: null
+! at xiaopeng666.top.utils.mongo.MongoStorage.isSmsVerifyCodeValid(MongoStorage.java:208)
+! at io.j1st.utils.http.resource.UserResource.signUp(UserResource.java:142)
+! at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+! at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+! at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+! at java.lang.reflect.Method.invoke(Method.java:497)
+! at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161)
+! at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$TypeOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:205)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102)
+! at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:315)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:297)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:267)
+! at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317)
+! at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305)
+! at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154)
+! at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:471)
+! at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:425)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:383)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:336)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:223)
+! at io.dropwizard.jetty.NonblockingServletHolder.handle(NonblockingServletHolder.java:49)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1669)
+! at org.eclipse.jetty.servlets.UserAgentFilter.doFilter(UserAgentFilter.java:83)
+! at org.eclipse.jetty.servlets.GzipFilter.doFilter(GzipFilter.java:300)
+! at io.dropwizard.jetty.BiDiGzipFilter.doFilter(BiDiGzipFilter.java:132)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at io.dropwizard.servlets.ThreadNameFilter.doFilter(ThreadNameFilter.java:29)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.handle(AllowedMethodsFilter.java:43)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.doFilter(AllowedMethodsFilter.java:38)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at org.eclipse.jetty.servlets.CrossOriginFilter.handle(CrossOriginFilter.java:256)
+! at org.eclipse.jetty.servlets.CrossOriginFilter.doFilter(CrossOriginFilter.java:219)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:585)
+! at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1127)
+! at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:515)
+! at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1061)
+! at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at com.codahale.metrics.jetty9.InstrumentedHandler.handle(InstrumentedHandler.java:240)
+! at io.dropwizard.jetty.ContextRoutingHandler.handle(ContextRoutingHandler.java:38)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at org.eclipse.jetty.server.handler.RequestLogHandler.handle(RequestLogHandler.java:95)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:159)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at org.eclipse.jetty.server.Server.handle(Server.java:499)
+! at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:310)
+! at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:257)
+! at org.eclipse.jetty.io.AbstractConnection$2.run(AbstractConnection.java:540)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:635)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:555)
+! at java.lang.Thread.run(Thread.java:745)
+2017-08-17 14:39:54.283 [main] INFO  o.e.jetty.util.log - Logging initialized @2128ms
+ 2017-08-17 14:39:54.398 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 14:39:54.408 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 14:39:54.423 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 14:39:54.455 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@4ef27d66{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 14:39:54.458 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 14:39:54.465 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 14:39:54.634 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 14:39:54.719 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 14:39:54.875 [cluster-ClusterId{value='59953a3adf9f11230c088775', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:282}] to 113.209.37.40:27017
+ 2017-08-17 14:39:54.906 [cluster-ClusterId{value='59953a3adf9f11230c088775', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=30417241}
+ 2017-08-17 14:39:55.027 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:283}] to 113.209.37.40:27017
+ 2017-08-17 14:39:56.090 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 14:39:56.091 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@69a2b3b6{/,null,AVAILABLE}
+ 2017-08-17 14:39:56.098 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 14:39:56.099 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 14:39:56.103 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@706eab5d{/admin,null,AVAILABLE}
+ 2017-08-17 14:39:56.160 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@4ef27d66{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 14:39:56.161 [main] INFO  o.e.j.server.Server - Started @4007ms
+ 2017-08-17 14:42:23.906 [main] INFO  o.e.jetty.util.log - Logging initialized @2147ms
+ 2017-08-17 14:42:24.027 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 14:42:24.035 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 14:42:24.051 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 14:42:24.079 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@4ef27d66{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 14:42:24.082 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 14:42:24.089 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 14:42:24.255 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 14:42:24.329 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 14:42:24.453 [cluster-ClusterId{value='59953ad0df9f1135d40fe0ba', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:284}] to 113.209.37.40:27017
+ 2017-08-17 14:42:24.482 [cluster-ClusterId{value='59953ad0df9f1135d40fe0ba', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=28234495}
+ 2017-08-17 14:42:24.600 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:285}] to 113.209.37.40:27017
+ 2017-08-17 14:42:25.409 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 14:42:25.410 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@69a2b3b6{/,null,AVAILABLE}
+ 2017-08-17 14:42:25.423 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 14:42:25.423 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 14:42:25.429 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@706eab5d{/admin,null,AVAILABLE}
+ 2017-08-17 14:42:25.503 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@4ef27d66{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 14:42:25.503 [main] INFO  o.e.j.server.Server - Started @3745ms
+ 2017-08-17 14:43:03.284 [dw-21 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 14:43:03.284 [dw-21 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 14:43:03.355 [dw-21 - POST /user/email/send] ERROR i.j.u.h.r.UserResource - Invalid modifier specified $currentDate
+ 2017-08-17 14:44:08.391 [main] INFO  o.e.jetty.util.log - Logging initialized @8206ms
+ 2017-08-17 14:44:08.551 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 14:44:08.559 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 14:44:08.577 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 14:44:08.625 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 14:44:08.628 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 14:44:08.638 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 14:44:08.876 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 14:44:08.915 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 14:44:09.048 [cluster-ClusterId{value='59953b38df9f112890eb6ed0', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:290}] to 113.209.37.40:27017
+ 2017-08-17 14:44:09.080 [cluster-ClusterId{value='59953b38df9f112890eb6ed0', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=30515213}
+ 2017-08-17 14:44:09.217 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:291}] to 113.209.37.40:27017
+ 2017-08-17 14:44:10.503 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 14:44:10.506 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@59838256{/,null,AVAILABLE}
+ 2017-08-17 14:44:10.513 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 14:44:10.513 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 14:44:10.522 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@729c8063{/admin,null,AVAILABLE}
+ 2017-08-17 14:44:10.596 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 14:44:10.597 [main] INFO  o.e.j.server.Server - Started @10412ms
+ 2017-08-17 14:44:16.836 [dw-20 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 14:44:37.279 [dw-20 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 14:45:05.486 [dw-20 - POST /user/email/send] ERROR i.j.u.h.r.UserResource - Invalid modifier specified $currentDate
+ 2017-08-17 14:45:09.951 [main] INFO  o.e.jetty.util.log - Logging initialized @2396ms
+ 2017-08-17 14:45:10.110 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 14:45:10.119 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 14:45:10.137 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 14:45:10.186 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 14:45:10.190 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 14:45:10.200 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 14:45:10.433 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 14:45:10.473 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 14:45:10.610 [cluster-ClusterId{value='59953b76df9f112804c786b8', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:292}] to 113.209.37.40:27017
+ 2017-08-17 14:45:10.642 [cluster-ClusterId{value='59953b76df9f112804c786b8', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=31063543}
+ 2017-08-17 14:45:10.772 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:293}] to 113.209.37.40:27017
+ 2017-08-17 14:45:11.793 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 14:45:11.799 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@59838256{/,null,AVAILABLE}
+ 2017-08-17 14:45:11.805 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 14:45:11.805 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 14:45:11.811 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@729c8063{/admin,null,AVAILABLE}
+ 2017-08-17 14:45:11.881 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 14:45:11.881 [main] INFO  o.e.j.server.Server - Started @4328ms
+ 2017-08-17 14:45:26.971 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 14:45:28.901 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 14:45:56.016 [dw-23 - POST /user/email/send] ERROR i.j.u.h.r.UserResource - Invalid modifier specified $currentDate
+ 2017-08-17 14:50:45.308 [main] INFO  o.e.jetty.util.log - Logging initialized @2286ms
+ 2017-08-17 14:50:45.471 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 14:50:45.479 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 14:50:45.496 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 14:50:45.549 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 14:50:45.552 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 14:50:45.562 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 14:50:45.794 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 14:50:45.833 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 14:50:45.972 [cluster-ClusterId{value='59953cc5df9f1109dc11767d', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:294}] to 113.209.37.40:27017
+ 2017-08-17 14:50:46.005 [cluster-ClusterId{value='59953cc5df9f1109dc11767d', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=31719797}
+ 2017-08-17 14:50:46.147 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:295}] to 113.209.37.40:27017
+ 2017-08-17 14:50:47.193 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 14:50:47.197 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@59838256{/,null,AVAILABLE}
+ 2017-08-17 14:50:47.207 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 14:50:47.208 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 14:50:47.217 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@729c8063{/admin,null,AVAILABLE}
+ 2017-08-17 14:50:47.318 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 14:50:47.318 [main] INFO  o.e.j.server.Server - Started @4297ms
+ 2017-08-17 14:50:50.833 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 14:50:53.293 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 14:54:28.808 [dw-23 - POST /user/email/send] ERROR i.j.u.h.r.UserResource - Modified count is only available when connected to MongoDB 2.6 servers or above.
+ 2017-08-17 14:54:33.341 [main] INFO  o.e.jetty.util.log - Logging initialized @2529ms
+ 2017-08-17 14:54:33.517 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 14:54:33.530 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 14:54:33.548 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 14:54:33.605 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 14:54:33.609 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 14:54:33.620 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 14:54:33.875 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 14:54:33.915 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 14:54:34.057 [cluster-ClusterId{value='59953da9df9f11111463f99f', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:296}] to 113.209.37.40:27017
+ 2017-08-17 14:54:34.089 [cluster-ClusterId{value='59953da9df9f11111463f99f', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=32154916}
+ 2017-08-17 14:54:34.209 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:297}] to 113.209.37.40:27017
+ 2017-08-17 14:54:35.396 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 14:54:35.400 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@59838256{/,null,AVAILABLE}
+ 2017-08-17 14:54:35.409 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 14:54:35.409 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 14:54:35.415 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@729c8063{/admin,null,AVAILABLE}
+ 2017-08-17 14:54:35.497 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 14:54:35.497 [main] INFO  o.e.j.server.Server - Started @4688ms
+ 2017-08-17 14:54:39.017 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 14:54:39.018 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 14:55:35.652 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.zeninfor.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 14:55:35.652 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 14:57:19.103 [main] INFO  o.e.jetty.util.log - Logging initialized @2455ms
+ 2017-08-17 14:57:19.288 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 14:57:19.299 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 14:57:19.325 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 14:57:19.384 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 14:57:19.387 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 14:57:19.397 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 14:57:19.652 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 14:57:19.696 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 14:57:19.851 [cluster-ClusterId{value='59953e4fdf9f113784ad990a', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:298}] to 113.209.37.40:27017
+ 2017-08-17 14:57:19.881 [cluster-ClusterId{value='59953e4fdf9f113784ad990a', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=29303474}
+ 2017-08-17 14:57:20.000 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:299}] to 113.209.37.40:27017
+ 2017-08-17 14:57:21.230 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 14:57:21.233 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@59838256{/,null,AVAILABLE}
+ 2017-08-17 14:57:21.241 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 14:57:21.241 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 14:57:21.246 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@729c8063{/admin,null,AVAILABLE}
+ 2017-08-17 14:57:21.309 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 14:57:21.309 [main] INFO  o.e.j.server.Server - Started @4662ms
+ 2017-08-17 14:57:24.496 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 14:57:24.496 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 14:58:07.509 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.gmail.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 14:58:07.509 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 14:58:10.318 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.gmail.com:25
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:142)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: com.sun.mail.smtp.SMTPSendFailedException: 530 5.7.0 Must issue a STARTTLS command first. e19sm5941436pga.61 - gsmtp
+! 
+! at com.sun.mail.smtp.SMTPTransport.issueSendCommand(SMTPTransport.java:2114)
+! at com.sun.mail.smtp.SMTPTransport.mailFrom(SMTPTransport.java:1618)
+! at com.sun.mail.smtp.SMTPTransport.sendMessage(SMTPTransport.java:1119)
+! at javax.mail.Transport.send0(Transport.java:195)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+2017-08-17 15:01:20.292 [main] INFO  o.e.jetty.util.log - Logging initialized @2225ms
+ 2017-08-17 15:01:20.455 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:01:20.466 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:01:20.484 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:01:20.535 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:01:20.538 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:01:20.550 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:01:20.796 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:01:20.836 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:01:21.009 [cluster-ClusterId{value='59953f40df9f1124a4ebe15e', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:300}] to 113.209.37.40:27017
+ 2017-08-17 15:01:21.045 [cluster-ClusterId{value='59953f40df9f1124a4ebe15e', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=35058609}
+ 2017-08-17 15:01:21.171 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:301}] to 113.209.37.40:27017
+ 2017-08-17 15:01:22.230 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:01:22.237 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@1c61eda5{/,null,AVAILABLE}
+ 2017-08-17 15:01:22.243 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:01:22.244 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:01:22.250 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@1b7f06c7{/admin,null,AVAILABLE}
+ 2017-08-17 15:01:22.323 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:01:22.323 [main] INFO  o.e.j.server.Server - Started @4258ms
+ 2017-08-17 15:01:43.921 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:01:43.922 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:01:51.159 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.qq.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:01:51.159 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:01:51.404 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.qq.com:25
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:131)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.AuthenticationFailedException: 530 Error: A secure connection is requiered(such as ssl). More information at http://service.mail.qq.com/cgi-bin/help?id=28
+! 
+! at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:823)
+! at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:756)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:673)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+2017-08-17 15:11:11.922 [main] INFO  o.e.jetty.util.log - Logging initialized @3681ms
+ 2017-08-17 15:11:12.101 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:11:12.110 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:11:12.126 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:11:12.166 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@1706a5c9{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:11:12.169 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:11:12.180 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:11:12.436 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:11:12.480 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:11:12.657 [cluster-ClusterId{value='59954190df9f1118f89a5375', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:302}] to 113.209.37.40:27017
+ 2017-08-17 15:11:12.687 [cluster-ClusterId{value='59954190df9f1118f89a5375', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=30029087}
+ 2017-08-17 15:11:12.806 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:303}] to 113.209.37.40:27017
+ 2017-08-17 15:11:14.132 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:11:14.134 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@131a7516{/,null,AVAILABLE}
+ 2017-08-17 15:11:14.139 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:11:14.139 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:11:14.147 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@40ed1802{/admin,null,AVAILABLE}
+ 2017-08-17 15:11:14.213 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@1706a5c9{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:11:14.213 [main] INFO  o.e.j.server.Server - Started @5975ms
+ 2017-08-17 15:11:21.136 [dw-22 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:11:21.137 [dw-22 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:12:21.993 [main] INFO  o.e.jetty.util.log - Logging initialized @2257ms
+ 2017-08-17 15:12:22.146 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:12:22.155 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:12:22.173 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:12:22.216 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@1de6932a{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:12:22.219 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:12:22.229 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:12:22.466 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:12:22.509 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:12:22.648 [cluster-ClusterId{value='599541d6df9f1120c4692f77', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:304}] to 113.209.37.40:27017
+ 2017-08-17 15:12:22.677 [cluster-ClusterId{value='599541d6df9f1120c4692f77', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=28684542}
+ 2017-08-17 15:12:22.801 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:305}] to 113.209.37.40:27017
+ 2017-08-17 15:12:23.861 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:12:23.864 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@1859ffda{/,null,AVAILABLE}
+ 2017-08-17 15:12:23.870 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:12:23.870 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:12:23.877 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@151732fb{/admin,null,AVAILABLE}
+ 2017-08-17 15:12:23.954 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@1de6932a{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:12:23.954 [main] INFO  o.e.j.server.Server - Started @4220ms
+ 2017-08-17 15:12:26.417 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:12:26.418 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:12:26.499 [dw-23 - POST /user/email/send] ERROR x.t.u.SendMailUtil - 不能读取属性文件. 请确保properties在CLASSPATH指定的路径中
+ 2017-08-17 15:12:26.523 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! java.lang.NullPointerException: null
+! at javax.mail.internet.InternetAddress.parse(InternetAddress.java:673)
+! at javax.mail.internet.InternetAddress.parse(InternetAddress.java:633)
+! at javax.mail.internet.InternetAddress.<init>(InternetAddress.java:111)
+! at org.apache.commons.mail.Email.createInternetAddress(Email.java:1884)
+! at org.apache.commons.mail.Email.setFrom(Email.java:749)
+! at org.apache.commons.mail.Email.setFrom(Email.java:732)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:121)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+2017-08-17 15:19:35.260 [main] INFO  o.e.jetty.util.log - Logging initialized @2472ms
+ 2017-08-17 15:19:35.415 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:19:35.424 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:19:35.442 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:19:35.488 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:19:35.491 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:19:35.500 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:19:35.742 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:19:35.780 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:19:35.924 [cluster-ClusterId{value='59954387df9f111d04fd2ad0', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:306}] to 113.209.37.40:27017
+ 2017-08-17 15:19:35.958 [cluster-ClusterId{value='59954387df9f111d04fd2ad0', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=32933091}
+ 2017-08-17 15:19:36.085 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:307}] to 113.209.37.40:27017
+ 2017-08-17 15:19:37.261 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:19:37.265 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@1859ffda{/,null,AVAILABLE}
+ 2017-08-17 15:19:37.270 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:19:37.271 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:19:37.278 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@151732fb{/admin,null,AVAILABLE}
+ 2017-08-17 15:19:37.344 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:19:37.344 [main] INFO  o.e.j.server.Server - Started @4558ms
+ 2017-08-17 15:19:40.351 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:19:40.352 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:19:40.428 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.qq.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:19:40.428 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:19:40.653 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.qq.com:25
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:138)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.AuthenticationFailedException: 530 Error: A secure connection is requiered(such as ssl). More information at http://service.mail.qq.com/cgi-bin/help?id=28
+! 
+! at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:823)
+! at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:756)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:673)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+2017-08-17 15:23:20.860 [main] INFO  o.e.jetty.util.log - Logging initialized @2397ms
+ 2017-08-17 15:23:21.001 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:23:21.010 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:23:21.026 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:23:21.069 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:23:21.073 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:23:21.086 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:23:21.319 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:23:21.370 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:23:21.508 [cluster-ClusterId{value='59954469df9f112bdc90ec62', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:308}] to 113.209.37.40:27017
+ 2017-08-17 15:23:21.540 [cluster-ClusterId{value='59954469df9f112bdc90ec62', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=31480622}
+ 2017-08-17 15:23:21.667 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:309}] to 113.209.37.40:27017
+ 2017-08-17 15:23:22.709 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:23:22.712 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@131a7516{/,null,AVAILABLE}
+ 2017-08-17 15:23:22.719 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:23:22.720 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:23:22.726 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@40ed1802{/admin,null,AVAILABLE}
+ 2017-08-17 15:23:22.793 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:23:22.794 [main] INFO  o.e.j.server.Server - Started @4331ms
+ 2017-08-17 15:23:47.016 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:23:47.017 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:23:47.110 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.qq.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:23:47.110 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:23:47.359 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.qq.com:25
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:138)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.AuthenticationFailedException: 530 Error: A secure connection is requiered(such as ssl). More information at http://service.mail.qq.com/cgi-bin/help?id=28
+! 
+! at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:823)
+! at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:756)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:673)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+2017-08-17 15:24:12.816 [main] INFO  o.e.jetty.util.log - Logging initialized @2297ms
+ 2017-08-17 15:24:12.964 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:24:12.976 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:24:12.994 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:24:13.040 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:24:13.043 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:24:13.053 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:24:13.289 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:24:13.327 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:24:13.710 [cluster-ClusterId{value='5995449ddf9f11131ccf45f8', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:310}] to 113.209.37.40:27017
+ 2017-08-17 15:24:13.740 [cluster-ClusterId{value='5995449ddf9f11131ccf45f8', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=29530831}
+ 2017-08-17 15:24:13.862 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:311}] to 113.209.37.40:27017
+ 2017-08-17 15:24:14.863 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:24:14.868 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@59838256{/,null,AVAILABLE}
+ 2017-08-17 15:24:14.876 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:24:14.876 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:24:14.885 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@729c8063{/admin,null,AVAILABLE}
+ 2017-08-17 15:24:14.977 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:24:14.977 [main] INFO  o.e.j.server.Server - Started @4460ms
+ 2017-08-17 15:24:21.384 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:24:21.385 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:24:21.462 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.qq.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:24:21.462 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:24:21.707 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.qq.com:25
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:138)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.AuthenticationFailedException: 530 Error: A secure connection is requiered(such as ssl). More information at http://service.mail.qq.com/cgi-bin/help?id=28
+! 
+! at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:823)
+! at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:756)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:673)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+2017-08-17 15:30:26.072 [main] INFO  o.e.jetty.util.log - Logging initialized @2230ms
+ 2017-08-17 15:30:26.222 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:30:26.231 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:30:26.249 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:30:26.292 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:30:26.295 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:30:26.305 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:30:26.551 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:30:26.591 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:30:26.779 [cluster-ClusterId{value='59954612df9f1120648aa6e0', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:312}] to 113.209.37.40:27017
+ 2017-08-17 15:30:26.816 [cluster-ClusterId{value='59954612df9f1120648aa6e0', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=36774512}
+ 2017-08-17 15:30:26.938 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:313}] to 113.209.37.40:27017
+ 2017-08-17 15:30:27.979 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:30:27.984 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@59838256{/,null,AVAILABLE}
+ 2017-08-17 15:30:27.991 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:30:27.992 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:30:28.000 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@729c8063{/admin,null,AVAILABLE}
+ 2017-08-17 15:30:28.116 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:30:28.117 [main] INFO  o.e.j.server.Server - Started @4277ms
+ 2017-08-17 15:30:32.613 [dw-24 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:30:32.613 [dw-24 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:30:32.704 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.qq.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:30:32.704 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:30:32.961 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.qq.com:25
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:138)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.AuthenticationFailedException: 530 Error: A secure connection is requiered(such as ssl). More information at http://service.mail.qq.com/cgi-bin/help?id=28
+! 
+! at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:823)
+! at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:756)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:673)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+2017-08-17 15:34:55.195 [main] INFO  o.e.jetty.util.log - Logging initialized @2413ms
+ 2017-08-17 15:34:55.354 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:34:55.365 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:34:55.383 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:34:55.437 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:34:55.441 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:34:55.451 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:34:55.748 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:34:55.787 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:34:55.915 [cluster-ClusterId{value='5995471fdf9f112a78354038', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:314}] to 113.209.37.40:27017
+ 2017-08-17 15:34:55.945 [cluster-ClusterId{value='5995471fdf9f112a78354038', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=28869600}
+ 2017-08-17 15:34:56.063 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:315}] to 113.209.37.40:27017
+ 2017-08-17 15:34:57.382 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:34:57.386 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@1c61eda5{/,null,AVAILABLE}
+ 2017-08-17 15:34:57.398 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:34:57.399 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:34:57.414 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@1b7f06c7{/admin,null,AVAILABLE}
+ 2017-08-17 15:34:57.510 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:34:57.510 [main] INFO  o.e.j.server.Server - Started @4729ms
+ 2017-08-17 15:35:00.515 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:35:00.515 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:35:00.605 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.qq.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:35:00.605 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:35:00.824 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.qq.com:25
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:138)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.AuthenticationFailedException: 530 Error: A secure connection is requiered(such as ssl). More information at http://service.mail.qq.com/cgi-bin/help?id=28
+! 
+! at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:823)
+! at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:756)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:673)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+2017-08-17 15:36:52.044 [main] INFO  o.e.jetty.util.log - Logging initialized @2332ms
+ 2017-08-17 15:36:52.260 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:36:52.273 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:36:52.296 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:36:52.347 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:36:52.352 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:36:52.364 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:36:52.605 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:36:52.644 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:36:52.812 [cluster-ClusterId{value='59954794df9f1102a4333015', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:316}] to 113.209.37.40:27017
+ 2017-08-17 15:36:52.847 [cluster-ClusterId{value='59954794df9f1102a4333015', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=35079136}
+ 2017-08-17 15:36:52.970 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:317}] to 113.209.37.40:27017
+ 2017-08-17 15:36:54.007 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:36:54.013 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@131a7516{/,null,AVAILABLE}
+ 2017-08-17 15:36:54.022 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:36:54.023 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:36:54.030 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@40ed1802{/admin,null,AVAILABLE}
+ 2017-08-17 15:36:54.116 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:36:54.116 [main] INFO  o.e.j.server.Server - Started @4405ms
+ 2017-08-17 15:37:00.171 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:37:00.172 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:37:00.259 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.zeninfor.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:37:00.259 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:37:25.962 [main] INFO  o.e.jetty.util.log - Logging initialized @2282ms
+ 2017-08-17 15:37:26.118 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:37:26.128 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:37:26.146 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:37:26.191 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:37:26.194 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:37:26.205 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:37:26.446 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:37:26.487 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:37:26.614 [cluster-ClusterId{value='599547b6df9f111820c0f775', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:318}] to 113.209.37.40:27017
+ 2017-08-17 15:37:26.645 [cluster-ClusterId{value='599547b6df9f111820c0f775', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=30530141}
+ 2017-08-17 15:37:26.766 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:319}] to 113.209.37.40:27017
+ 2017-08-17 15:37:27.997 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:37:28.001 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@1859ffda{/,null,AVAILABLE}
+ 2017-08-17 15:37:28.008 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:37:28.008 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:37:28.014 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@151732fb{/admin,null,AVAILABLE}
+ 2017-08-17 15:37:28.078 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:37:28.079 [main] INFO  o.e.j.server.Server - Started @4401ms
+ 2017-08-17 15:37:35.167 [main] INFO  o.e.jetty.util.log - Logging initialized @2488ms
+ 2017-08-17 15:37:35.307 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:37:35.316 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:37:35.333 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:37:35.378 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:37:35.382 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:37:35.394 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:37:35.643 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:37:35.681 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:37:35.817 [cluster-ClusterId{value='599547bfdf9f1128d090fcfb', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:320}] to 113.209.37.40:27017
+ 2017-08-17 15:37:35.847 [cluster-ClusterId{value='599547bfdf9f1128d090fcfb', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=29575307}
+ 2017-08-17 15:37:35.968 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:321}] to 113.209.37.40:27017
+ 2017-08-17 15:37:37.062 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:37:37.066 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@59838256{/,null,AVAILABLE}
+ 2017-08-17 15:37:37.073 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:37:37.073 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:37:37.083 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@729c8063{/admin,null,AVAILABLE}
+ 2017-08-17 15:37:37.179 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:37:37.179 [main] INFO  o.e.j.server.Server - Started @4501ms
+ 2017-08-17 15:37:40.731 [dw-22 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:37:40.731 [dw-22 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:37:40.817 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.zeninfor.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:37:40.817 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:37:40.997 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.zeninfor.com:25
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:138)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.AuthenticationFailedException: 526 Authentication failure[0]
+! 
+! at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:823)
+! at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:756)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:673)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+2017-08-17 15:38:43.927 [main] INFO  o.e.jetty.util.log - Logging initialized @2229ms
+ 2017-08-17 15:38:44.077 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:38:44.088 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:38:44.105 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:38:44.147 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@1706a5c9{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:38:44.150 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:38:44.160 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:38:44.400 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:38:44.439 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:38:44.569 [cluster-ClusterId{value='59954804df9f1135b83fa48e', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:322}] to 113.209.37.40:27017
+ 2017-08-17 15:38:44.600 [cluster-ClusterId{value='59954804df9f1135b83fa48e', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=30812238}
+ 2017-08-17 15:38:44.727 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:323}] to 113.209.37.40:27017
+ 2017-08-17 15:38:45.762 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:38:45.767 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@131a7516{/,null,AVAILABLE}
+ 2017-08-17 15:38:45.774 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:38:45.774 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:38:45.780 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@40ed1802{/admin,null,AVAILABLE}
+ 2017-08-17 15:38:45.872 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@1706a5c9{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:38:45.872 [main] INFO  o.e.j.server.Server - Started @4176ms
+ 2017-08-17 15:38:48.203 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:38:48.204 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:38:48.277 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.zeninfor.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:38:48.277 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:38:48.426 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.zeninfor.com:25
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:138)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.AuthenticationFailedException: 526 Authentication failure[0]
+! 
+! at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:823)
+! at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:756)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:673)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+2017-08-17 15:43:20.530 [main] INFO  o.e.jetty.util.log - Logging initialized @2332ms
+ 2017-08-17 15:43:20.709 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:43:20.719 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:43:20.739 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:43:20.786 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:43:20.789 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:43:20.799 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:43:21.058 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:43:21.102 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:43:21.230 [cluster-ClusterId{value='59954919df9f113690588005', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:324}] to 113.209.37.40:27017
+ 2017-08-17 15:43:21.259 [cluster-ClusterId{value='59954919df9f113690588005', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=28603366}
+ 2017-08-17 15:43:21.384 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:325}] to 113.209.37.40:27017
+ 2017-08-17 15:43:22.414 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:43:22.418 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@1859ffda{/,null,AVAILABLE}
+ 2017-08-17 15:43:22.433 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:43:22.433 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:43:22.443 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@151732fb{/admin,null,AVAILABLE}
+ 2017-08-17 15:43:22.521 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:43:22.522 [main] INFO  o.e.j.server.Server - Started @4325ms
+ 2017-08-17 15:43:51.965 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:43:51.966 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:43:52.067 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.qq.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:43:52.067 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:43:52.325 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.qq.com:25
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:138)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.AuthenticationFailedException: 530 Error: A secure connection is requiered(such as ssl). More information at http://service.mail.qq.com/cgi-bin/help?id=28
+! 
+! at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:823)
+! at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:756)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:673)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+2017-08-17 15:45:51.911 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:45:51.911 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:45:51.943 [pool-5-thread-2] INFO  x.t.u.SendMailUtil - mailServer:smtp.qq.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:45:51.943 [pool-5-thread-2] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:45:52.137 [pool-5-thread-2] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.qq.com:25
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:138)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.AuthenticationFailedException: 530 Error: A secure connection is requiered(such as ssl). More information at http://service.mail.qq.com/cgi-bin/help?id=28
+! 
+! at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:823)
+! at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:756)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:673)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+2017-08-17 15:46:59.131 [main] INFO  o.e.jetty.util.log - Logging initialized @2252ms
+ 2017-08-17 15:46:59.287 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:46:59.298 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:46:59.322 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:46:59.366 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:46:59.369 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:46:59.379 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:46:59.631 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:46:59.672 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:46:59.802 [cluster-ClusterId{value='599549f3df9f11268836dd4b', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:326}] to 113.209.37.40:27017
+ 2017-08-17 15:46:59.833 [cluster-ClusterId{value='599549f3df9f11268836dd4b', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=30139499}
+ 2017-08-17 15:46:59.964 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:327}] to 113.209.37.40:27017
+ 2017-08-17 15:47:00.962 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:47:00.966 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@1859ffda{/,null,AVAILABLE}
+ 2017-08-17 15:47:00.976 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:47:00.976 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:47:00.986 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@151732fb{/admin,null,AVAILABLE}
+ 2017-08-17 15:47:01.072 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:47:01.073 [main] INFO  o.e.j.server.Server - Started @4195ms
+ 2017-08-17 15:47:13.022 [dw-24 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:47:13.023 [dw-24 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:47:13.098 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.qq.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:47:13.099 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:47:13.340 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.qq.com:25
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:138)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.AuthenticationFailedException: 530 Error: A secure connection is requiered(such as ssl). More information at http://service.mail.qq.com/cgi-bin/help?id=28
+! 
+! at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:823)
+! at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:756)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:673)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+2017-08-17 15:49:26.600 [main] INFO  o.e.jetty.util.log - Logging initialized @2256ms
+ 2017-08-17 15:49:26.759 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:49:26.769 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:49:26.788 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:49:26.833 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:49:26.836 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:49:26.847 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:49:27.093 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:49:27.131 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:49:27.259 [cluster-ClusterId{value='59954a87df9f113734d39874', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:328}] to 113.209.37.40:27017
+ 2017-08-17 15:49:27.288 [cluster-ClusterId{value='59954a87df9f113734d39874', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=28258133}
+ 2017-08-17 15:49:27.420 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:329}] to 113.209.37.40:27017
+ 2017-08-17 15:49:28.508 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:49:28.511 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@59838256{/,null,AVAILABLE}
+ 2017-08-17 15:49:28.521 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:49:28.521 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:49:28.529 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@729c8063{/admin,null,AVAILABLE}
+ 2017-08-17 15:49:28.621 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:49:28.621 [main] INFO  o.e.j.server.Server - Started @4278ms
+ 2017-08-17 15:49:31.628 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:49:31.628 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:49:31.708 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.qq.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:49:31.708 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:49:31.956 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.qq.com:25
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:138)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.AuthenticationFailedException: 530 Error: A secure connection is requiered(such as ssl). More information at http://service.mail.qq.com/cgi-bin/help?id=28
+! 
+! at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:823)
+! at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:756)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:673)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+2017-08-17 15:52:36.388 [main] INFO  o.e.jetty.util.log - Logging initialized @2335ms
+ 2017-08-17 15:52:36.542 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:52:36.553 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:52:36.570 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:52:36.612 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@1de6932a{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:52:36.615 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:52:36.625 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:52:36.869 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:52:36.908 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:52:37.045 [cluster-ClusterId{value='59954b44df9f111d742a5785', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:330}] to 113.209.37.40:27017
+ 2017-08-17 15:52:37.076 [cluster-ClusterId{value='59954b44df9f111d742a5785', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=29996429}
+ 2017-08-17 15:52:37.204 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:331}] to 113.209.37.40:27017
+ 2017-08-17 15:52:38.582 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:52:38.583 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@59838256{/,null,AVAILABLE}
+ 2017-08-17 15:52:38.590 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:52:38.590 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:52:38.598 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@729c8063{/admin,null,AVAILABLE}
+ 2017-08-17 15:52:38.683 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@1de6932a{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:52:38.683 [main] INFO  o.e.j.server.Server - Started @4631ms
+ 2017-08-17 15:52:43.308 [dw-24 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:52:43.308 [dw-24 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:52:43.383 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.qq.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:52:43.383 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:53:26.379 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:53:26.379 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:53:26.411 [pool-5-thread-2] INFO  x.t.u.SendMailUtil - mailServer:smtp.qq.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:53:26.411 [pool-5-thread-2] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:53:43.492 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.qq.com:465
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:139)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.MessagingException: Exception reading response
+! at com.sun.mail.smtp.SMTPTransport.readServerResponse(SMTPTransport.java:2210)
+! at com.sun.mail.smtp.SMTPTransport.openServer(SMTPTransport.java:1950)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:642)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+! Caused by: java.net.SocketTimeoutException: Read timed out
+! at java.net.SocketInputStream.socketRead0(Native Method)
+! at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+! at java.net.SocketInputStream.read(SocketInputStream.java:170)
+! at java.net.SocketInputStream.read(SocketInputStream.java:141)
+! at com.sun.mail.util.TraceInputStream.read(TraceInputStream.java:110)
+! at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+! at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+! at com.sun.mail.util.LineInputStream.readLine(LineInputStream.java:89)
+! at com.sun.mail.smtp.SMTPTransport.readServerResponse(SMTPTransport.java:2188)
+! ... 13 common frames omitted
+2017-08-17 15:54:26.470 [pool-5-thread-2] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.qq.com:465
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:139)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.MessagingException: Exception reading response
+! at com.sun.mail.smtp.SMTPTransport.readServerResponse(SMTPTransport.java:2210)
+! at com.sun.mail.smtp.SMTPTransport.openServer(SMTPTransport.java:1950)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:642)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+! Caused by: java.net.SocketTimeoutException: Read timed out
+! at java.net.SocketInputStream.socketRead0(Native Method)
+! at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+! at java.net.SocketInputStream.read(SocketInputStream.java:170)
+! at java.net.SocketInputStream.read(SocketInputStream.java:141)
+! at com.sun.mail.util.TraceInputStream.read(TraceInputStream.java:110)
+! at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+! at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+! at com.sun.mail.util.LineInputStream.readLine(LineInputStream.java:89)
+! at com.sun.mail.smtp.SMTPTransport.readServerResponse(SMTPTransport.java:2188)
+! ... 13 common frames omitted
+2017-08-17 15:58:40.947 [main] INFO  o.e.jetty.util.log - Logging initialized @2370ms
+ 2017-08-17 15:58:41.102 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 15:58:41.113 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 15:58:41.131 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 15:58:41.175 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:58:41.178 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 15:58:41.189 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 15:58:41.432 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 15:58:41.471 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 15:58:41.598 [cluster-ClusterId{value='59954cb1df9f1126f415f545', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:332}] to 113.209.37.40:27017
+ 2017-08-17 15:58:41.627 [cluster-ClusterId{value='59954cb1df9f1126f415f545', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=28598390}
+ 2017-08-17 15:58:41.767 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:333}] to 113.209.37.40:27017
+ 2017-08-17 15:58:43.068 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 15:58:43.073 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@59838256{/,null,AVAILABLE}
+ 2017-08-17 15:58:43.084 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 15:58:43.084 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 15:58:43.100 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@729c8063{/admin,null,AVAILABLE}
+ 2017-08-17 15:58:43.196 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 15:58:43.197 [main] INFO  o.e.j.server.Server - Started @4622ms
+ 2017-08-17 15:58:55.984 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:58:55.985 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 15:58:56.065 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.qq.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 15:58:56.065 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 15:59:56.169 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.qq.com:465
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:139)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.MessagingException: Exception reading response
+! at com.sun.mail.smtp.SMTPTransport.readServerResponse(SMTPTransport.java:2210)
+! at com.sun.mail.smtp.SMTPTransport.openServer(SMTPTransport.java:1950)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:642)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+! Caused by: java.net.SocketTimeoutException: Read timed out
+! at java.net.SocketInputStream.socketRead0(Native Method)
+! at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+! at java.net.SocketInputStream.read(SocketInputStream.java:170)
+! at java.net.SocketInputStream.read(SocketInputStream.java:141)
+! at com.sun.mail.util.TraceInputStream.read(TraceInputStream.java:110)
+! at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+! at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+! at com.sun.mail.util.LineInputStream.readLine(LineInputStream.java:89)
+! at com.sun.mail.smtp.SMTPTransport.readServerResponse(SMTPTransport.java:2188)
+! ... 13 common frames omitted
+2017-08-17 15:59:58.444 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 15:59:58.444 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode 593619428@qq.com ,type:PLAYER
+ 2017-08-17 15:59:58.482 [pool-5-thread-2] INFO  x.t.u.SendMailUtil - mailServer:smtp.qq.com mailTo: 593619428@qq.com
+ 2017-08-17 15:59:58.483 [pool-5-thread-2] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 16:00:58.534 [pool-5-thread-2] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.qq.com:465
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:139)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.MessagingException: Exception reading response
+! at com.sun.mail.smtp.SMTPTransport.readServerResponse(SMTPTransport.java:2210)
+! at com.sun.mail.smtp.SMTPTransport.openServer(SMTPTransport.java:1950)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:642)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+! Caused by: java.net.SocketTimeoutException: Read timed out
+! at java.net.SocketInputStream.socketRead0(Native Method)
+! at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+! at java.net.SocketInputStream.read(SocketInputStream.java:170)
+! at java.net.SocketInputStream.read(SocketInputStream.java:141)
+! at com.sun.mail.util.TraceInputStream.read(TraceInputStream.java:110)
+! at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+! at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+! at com.sun.mail.util.LineInputStream.readLine(LineInputStream.java:89)
+! at com.sun.mail.smtp.SMTPTransport.readServerResponse(SMTPTransport.java:2188)
+! ... 13 common frames omitted
+2017-08-17 16:05:52.733 [main] INFO  o.e.jetty.util.log - Logging initialized @2379ms
+ 2017-08-17 16:05:52.884 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 16:05:52.891 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 16:05:52.909 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 16:05:52.947 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 16:05:52.950 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 16:05:52.960 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 16:05:53.188 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 16:05:53.225 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 16:05:53.358 [cluster-ClusterId{value='59954e61df9f112af8ea547a', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:334}] to 113.209.37.40:27017
+ 2017-08-17 16:05:53.390 [cluster-ClusterId{value='59954e61df9f112af8ea547a', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=30716444}
+ 2017-08-17 16:05:53.514 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:335}] to 113.209.37.40:27017
+ 2017-08-17 16:05:54.499 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 16:05:54.506 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@59838256{/,null,AVAILABLE}
+ 2017-08-17 16:05:54.513 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 16:05:54.513 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 16:05:54.523 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@729c8063{/admin,null,AVAILABLE}
+ 2017-08-17 16:05:54.605 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 16:05:54.605 [main] INFO  o.e.j.server.Server - Started @4253ms
+ 2017-08-17 16:06:26.565 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 16:06:26.566 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode 593619428@qq.com ,type:PLAYER
+ 2017-08-17 16:06:26.640 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.163.com mailTo: 593619428@qq.com
+ 2017-08-17 16:06:26.640 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 16:06:46.759 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - 邮件发送出现异常:{}
+ ! org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.163.com:465
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1410)
+! at org.apache.commons.mail.Email.send(Email.java:1437)
+! at xiaopeng666.top.utils.SendMailUtil$2.run(SendMailUtil.java:139)
+! at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+! at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: javax.mail.MessagingException: Could not connect to SMTP host: smtp.163.com, port: 465, response: -1
+! at com.sun.mail.smtp.SMTPTransport.openServer(SMTPTransport.java:1960)
+! at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:642)
+! at javax.mail.Service.connect(Service.java:317)
+! at javax.mail.Service.connect(Service.java:176)
+! at javax.mail.Service.connect(Service.java:125)
+! at javax.mail.Transport.send0(Transport.java:194)
+! at javax.mail.Transport.send(Transport.java:124)
+! at org.apache.commons.mail.Email.sendMimeMessage(Email.java:1400)
+! ... 5 common frames omitted
+2017-08-17 16:07:06.091 [main] INFO  o.e.jetty.util.log - Logging initialized @2437ms
+ 2017-08-17 16:07:06.253 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 16:07:06.263 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 16:07:06.281 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 16:07:06.321 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 16:07:06.324 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 16:07:06.334 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 16:07:06.568 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 16:07:06.605 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 16:07:06.758 [cluster-ClusterId{value='59954eaadf9f1131883b2c6b', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:336}] to 113.209.37.40:27017
+ 2017-08-17 16:07:06.793 [cluster-ClusterId{value='59954eaadf9f1131883b2c6b', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=34510278}
+ 2017-08-17 16:07:06.920 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:337}] to 113.209.37.40:27017
+ 2017-08-17 16:07:07.969 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 16:07:07.972 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@131a7516{/,null,AVAILABLE}
+ 2017-08-17 16:07:07.980 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 16:07:07.980 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 16:07:07.987 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@40ed1802{/admin,null,AVAILABLE}
+ 2017-08-17 16:07:08.052 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 16:07:08.052 [main] INFO  o.e.j.server.Server - Started @4399ms
+ 2017-08-17 16:07:16.190 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - Ready to send the activation code
+ 2017-08-17 16:07:16.193 [dw-23 - POST /user/email/send] DEBUG i.j.u.h.r.UserResource - save vcode pxiao@zeninfor.com ,type:PLAYER
+ 2017-08-17 16:07:16.274 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - mailServer:smtp.163.com mailTo: pxiao@zeninfor.com
+ 2017-08-17 16:07:16.274 [pool-5-thread-1] INFO  x.t.u.SendMailUtil - Mail Title：欢迎注册Myfriend
+ 2017-08-17 16:14:12.390 [dw-23 - POST /user] DEBUG i.j.u.h.r.UserResource - Process signUp request: SignUpRequest{name='null', email='pxiao@zeninfor.com', mobile='null', role=PLAYER, vcode=null}
+ 2017-08-17 16:14:12.443 [dw-23 - POST /user] ERROR i.d.j.e.LoggingExceptionMapper - Error handling a request: dc0c25edeeed37d3
+ ! java.lang.NullPointerException: null
+! at xiaopeng666.top.utils.mongo.MongoStorage.isSmsVerifyCodeValid(MongoStorage.java:211)
+! at io.j1st.utils.http.resource.UserResource.signUp(UserResource.java:145)
+! at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+! at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+! at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+! at java.lang.reflect.Method.invoke(Method.java:497)
+! at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161)
+! at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$TypeOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:205)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102)
+! at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:315)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:297)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:267)
+! at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317)
+! at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305)
+! at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154)
+! at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:471)
+! at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:425)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:383)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:336)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:223)
+! at io.dropwizard.jetty.NonblockingServletHolder.handle(NonblockingServletHolder.java:49)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1669)
+! at org.eclipse.jetty.servlets.UserAgentFilter.doFilter(UserAgentFilter.java:83)
+! at org.eclipse.jetty.servlets.GzipFilter.doFilter(GzipFilter.java:300)
+! at io.dropwizard.jetty.BiDiGzipFilter.doFilter(BiDiGzipFilter.java:132)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at io.dropwizard.servlets.ThreadNameFilter.doFilter(ThreadNameFilter.java:29)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.handle(AllowedMethodsFilter.java:43)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.doFilter(AllowedMethodsFilter.java:38)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at org.eclipse.jetty.servlets.CrossOriginFilter.handle(CrossOriginFilter.java:256)
+! at org.eclipse.jetty.servlets.CrossOriginFilter.doFilter(CrossOriginFilter.java:219)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:585)
+! at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1127)
+! at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:515)
+! at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1061)
+! at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at com.codahale.metrics.jetty9.InstrumentedHandler.handle(InstrumentedHandler.java:240)
+! at io.dropwizard.jetty.ContextRoutingHandler.handle(ContextRoutingHandler.java:38)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at org.eclipse.jetty.server.handler.RequestLogHandler.handle(RequestLogHandler.java:95)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:159)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at org.eclipse.jetty.server.Server.handle(Server.java:499)
+! at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:310)
+! at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:257)
+! at org.eclipse.jetty.io.AbstractConnection$2.run(AbstractConnection.java:540)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:635)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:555)
+! at java.lang.Thread.run(Thread.java:745)
+2017-08-17 16:14:46.623 [main] INFO  o.e.jetty.util.log - Logging initialized @2573ms
+ 2017-08-17 16:14:46.788 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 16:14:46.797 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 16:14:46.818 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 16:14:46.866 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 16:14:46.869 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 16:14:46.880 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 16:14:47.116 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 16:14:47.154 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 16:14:47.287 [cluster-ClusterId{value='59955077df9f112c78be70c0', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:338}] to 113.209.37.40:27017
+ 2017-08-17 16:14:47.318 [cluster-ClusterId{value='59955077df9f112c78be70c0', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=29764407}
+ 2017-08-17 16:14:47.463 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:339}] to 113.209.37.40:27017
+ 2017-08-17 16:14:48.548 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 16:14:48.553 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@1c61eda5{/,null,AVAILABLE}
+ 2017-08-17 16:14:48.560 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 16:14:48.562 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 16:14:48.570 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@1b7f06c7{/admin,null,AVAILABLE}
+ 2017-08-17 16:14:48.642 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@14dc3f89{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 16:14:48.642 [main] INFO  o.e.j.server.Server - Started @4595ms
+ 2017-08-17 16:15:42.768 [dw-24 - POST /user] DEBUG i.j.u.h.r.UserResource - Process signUp request: SignUpRequest{name='null', email='pxiao@zeninfor.com', mobile='null', role=PLAYER, vcode=bc1yn4td}
+ 2017-08-17 16:15:42.830 [dw-24 - POST /user] ERROR i.d.j.e.LoggingExceptionMapper - Error handling a request: f9019794bebe5a76
+ ! java.lang.NullPointerException: null
+! at xiaopeng666.top.utils.mongo.MongoStorage.isSmsVerifyCodeValid(MongoStorage.java:211)
+! at io.j1st.utils.http.resource.UserResource.signUp(UserResource.java:145)
+! at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+! at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+! at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+! at java.lang.reflect.Method.invoke(Method.java:497)
+! at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161)
+! at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$TypeOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:205)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102)
+! at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:315)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:297)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:267)
+! at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317)
+! at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305)
+! at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154)
+! at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:471)
+! at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:425)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:383)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:336)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:223)
+! at io.dropwizard.jetty.NonblockingServletHolder.handle(NonblockingServletHolder.java:49)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1669)
+! at org.eclipse.jetty.servlets.UserAgentFilter.doFilter(UserAgentFilter.java:83)
+! at org.eclipse.jetty.servlets.GzipFilter.doFilter(GzipFilter.java:300)
+! at io.dropwizard.jetty.BiDiGzipFilter.doFilter(BiDiGzipFilter.java:132)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at io.dropwizard.servlets.ThreadNameFilter.doFilter(ThreadNameFilter.java:29)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.handle(AllowedMethodsFilter.java:43)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.doFilter(AllowedMethodsFilter.java:38)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at org.eclipse.jetty.servlets.CrossOriginFilter.handle(CrossOriginFilter.java:256)
+! at org.eclipse.jetty.servlets.CrossOriginFilter.doFilter(CrossOriginFilter.java:219)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:585)
+! at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1127)
+! at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:515)
+! at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1061)
+! at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at com.codahale.metrics.jetty9.InstrumentedHandler.handle(InstrumentedHandler.java:240)
+! at io.dropwizard.jetty.ContextRoutingHandler.handle(ContextRoutingHandler.java:38)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at org.eclipse.jetty.server.handler.RequestLogHandler.handle(RequestLogHandler.java:95)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:159)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at org.eclipse.jetty.server.Server.handle(Server.java:499)
+! at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:310)
+! at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:257)
+! at org.eclipse.jetty.io.AbstractConnection$2.run(AbstractConnection.java:540)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:635)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:555)
+! at java.lang.Thread.run(Thread.java:745)
+2017-08-17 16:15:57.236 [dw-23 - POST /user] DEBUG i.j.u.h.r.UserResource - Process signUp request: SignUpRequest{name='null', email='pxiao@zeninfor.com', mobile='null', role=PLAYER, vcode=bc1yn4td}
+ 2017-08-17 16:16:33.221 [dw-23 - POST /user] ERROR i.d.j.e.LoggingExceptionMapper - Error handling a request: c995eb5f36afdc29
+ ! java.lang.NullPointerException: null
+! at xiaopeng666.top.utils.mongo.MongoStorage.isSmsVerifyCodeValid(MongoStorage.java:211)
+! at io.j1st.utils.http.resource.UserResource.signUp(UserResource.java:145)
+! at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+! at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+! at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+! at java.lang.reflect.Method.invoke(Method.java:497)
+! at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161)
+! at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$TypeOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:205)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102)
+! at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:315)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:297)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:267)
+! at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317)
+! at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305)
+! at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154)
+! at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:471)
+! at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:425)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:383)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:336)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:223)
+! at io.dropwizard.jetty.NonblockingServletHolder.handle(NonblockingServletHolder.java:49)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1669)
+! at org.eclipse.jetty.servlets.UserAgentFilter.doFilter(UserAgentFilter.java:83)
+! at org.eclipse.jetty.servlets.GzipFilter.doFilter(GzipFilter.java:300)
+! at io.dropwizard.jetty.BiDiGzipFilter.doFilter(BiDiGzipFilter.java:132)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at io.dropwizard.servlets.ThreadNameFilter.doFilter(ThreadNameFilter.java:29)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.handle(AllowedMethodsFilter.java:43)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.doFilter(AllowedMethodsFilter.java:38)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at org.eclipse.jetty.servlets.CrossOriginFilter.handle(CrossOriginFilter.java:256)
+! at org.eclipse.jetty.servlets.CrossOriginFilter.doFilter(CrossOriginFilter.java:219)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)
+! at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:585)
+! at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1127)
+! at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:515)
+! at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1061)
+! at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at com.codahale.metrics.jetty9.InstrumentedHandler.handle(InstrumentedHandler.java:240)
+! at io.dropwizard.jetty.ContextRoutingHandler.handle(ContextRoutingHandler.java:38)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at org.eclipse.jetty.server.handler.RequestLogHandler.handle(RequestLogHandler.java:95)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:159)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+! at org.eclipse.jetty.server.Server.handle(Server.java:499)
+! at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:310)
+! at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:257)
+! at org.eclipse.jetty.io.AbstractConnection$2.run(AbstractConnection.java:540)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:635)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:555)
+! at java.lang.Thread.run(Thread.java:745)
+2017-08-17 16:16:37.399 [main] INFO  o.e.jetty.util.log - Logging initialized @2451ms
+ 2017-08-17 16:16:37.558 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 16:16:37.567 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 16:16:37.586 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 16:16:37.631 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@4b869331{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 16:16:37.634 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 16:16:37.644 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 16:16:37.880 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 16:16:37.916 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 16:16:38.045 [cluster-ClusterId{value='599550e5df9f1135e0389dc6', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:340}] to 113.209.37.40:27017
+ 2017-08-17 16:16:38.074 [cluster-ClusterId{value='599550e5df9f1135e0389dc6', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=29493820}
+ 2017-08-17 16:16:38.212 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:341}] to 113.209.37.40:27017
+ 2017-08-17 16:16:39.226 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 16:16:39.231 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@1983b48a{/,null,AVAILABLE}
+ 2017-08-17 16:16:39.245 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 16:16:39.245 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 16:16:39.257 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@3663d0ba{/admin,null,AVAILABLE}
+ 2017-08-17 16:16:39.345 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@4b869331{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 16:16:39.346 [main] INFO  o.e.j.server.Server - Started @4399ms
+ 2017-08-17 16:17:16.004 [dw-24 - POST /user] DEBUG i.j.u.h.r.UserResource - Process signUp request: SignUpRequest{name='null', email='pxiao@zeninfor.com', mobile='null', role=PLAYER, vcode=bc1yn4td}
+ 2017-08-17 16:18:33.783 [main] INFO  o.e.jetty.util.log - Logging initialized @2209ms
+ 2017-08-17 16:18:33.972 [main] INFO  i.d.s.ServerFactory - Starting HttpApplication
+ 2017-08-17 16:18:33.981 [main] INFO  i.d.s.SimpleServerFactory - Registering jersey handler with root path prefix: /
+ 2017-08-17 16:18:33.998 [main] INFO  i.d.s.SimpleServerFactory - Registering admin handler with root path prefix: /admin
+ 2017-08-17 16:18:34.050 [main] INFO  o.e.j.s.SetUIDListener - Opened HttpApplication@33b082c5{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 16:18:34.053 [main] INFO  o.e.j.server.Server - jetty-9.2.13.v20150730
+ 2017-08-17 16:18:34.064 [main] DEBUG i.j.u.h.HttpApplication - Initializing Mysql storage ...
+ 2017-08-17 16:18:34.288 [main] INFO  o.m.driver.cluster - Cluster created with settings {hosts=[113.209.37.40:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+ 2017-08-17 16:18:34.323 [main] INFO  o.m.driver.cluster - No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=113.209.37.40:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+ 2017-08-17 16:18:34.488 [cluster-ClusterId{value='5995515adf9f11253404c4d0', description='null'}-113.209.37.40:27017] INFO  o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:345}] to 113.209.37.40:27017
+ 2017-08-17 16:18:34.518 [cluster-ClusterId{value='5995515adf9f11253404c4d0', description='null'}-113.209.37.40:27017] INFO  o.m.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=113.209.37.40:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 4, 12]}, minWireVersion=0, maxWireVersion=0, maxDocumentSize=16777216, roundTripTimeNanos=29343597}
+ 2017-08-17 16:18:34.647 [main] INFO  o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:346}] to 113.209.37.40:27017
+ 2017-08-17 16:18:35.905 [main] INFO  i.d.j.DropwizardResourceConfig - The following paths were found for the configured resources:
+
+    GET     /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user (io.j1st.utils.http.resource.UserResource)
+    POST    /user/email/send (io.j1st.utils.http.resource.UserResource)
+
+ 2017-08-17 16:18:35.906 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@5856dbe4{/,null,AVAILABLE}
+ 2017-08-17 16:18:35.912 [main] INFO  i.d.s.AdminEnvironment - tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+ 2017-08-17 16:18:35.912 [main] WARN  i.d.s.AdminEnvironment - 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2017-08-17 16:18:35.918 [main] INFO  o.e.j.s.h.ContextHandler - Started i.d.j.MutableServletContextHandler@4d7a64ca{/admin,null,AVAILABLE}
+ 2017-08-17 16:18:35.997 [main] INFO  o.e.j.s.ServerConnector - Started HttpApplication@33b082c5{HTTP/1.1}{0.0.0.0:8081}
+ 2017-08-17 16:18:35.997 [main] INFO  o.e.j.server.Server - Started @4426ms
+ 2017-08-17 16:18:45.233 [dw-23 - POST /user] DEBUG i.j.u.h.r.UserResource - Process signUp request: SignUpRequest{name='xpw', email='pxiao@zeninfor.com', mobile='null', role=PLAYER, vcode=bc1yn4td}
+ 2017-08-17 16:18:58.456 [dw-24 - POST /user] DEBUG i.j.u.h.r.UserResource - Process signUp request: SignUpRequest{name='xpw', email='pxiao@zeninfor.com', mobile='null', role=PLAYER, vcode=bc1yn4td}
+ 

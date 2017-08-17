@@ -10,8 +10,9 @@ import javax.validation.constraints.NotNull;
  * SignUp Request
  */
 public class SignUpRequest {
-
+    @NotNull
     private String name;
+    @NotNull
     private String vcode;//激活码
     @NotNull
     private String password;
@@ -25,7 +26,7 @@ public class SignUpRequest {
 
     private String pid;
 
-
+    @NotNull
     private VerifyType type;// 1 : 注册 2：找回密码
 
     public String getName() {
